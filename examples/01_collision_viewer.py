@@ -15,17 +15,54 @@ OUTPUT: Path = Path(__file__).parent.parent / "data" / "output" / "01_collision_
 
 # 1. parts (one with a hole) and a sheet (with a hole)
 geo: nest_geo = nest_geo()
-geo.add_part(Polyline([[0, 0, 0], [30, 0, 0], [30, 12, 0], [0, 12, 0], [0, 0, 0]]), copies=4)
 geo.add_part(
-    Polyline([[0, 0, 0], [20, 0, 0], [20, 20, 0], [0, 20, 0], [0, 0, 0]]),
-    holes=[Polyline([[6, 6, 0], [14, 6, 0], [14, 14, 0], [6, 14, 0], [6, 6, 0]])],
+    Polyline([
+        [0, 0, 0],
+        [30, 0, 0],
+        [30, 12, 0],
+        [0, 12, 0],
+        [0, 0, 0],
+    ]),
+    copies=4,
+)
+geo.add_part(
+    Polyline([
+        [0, 0, 0],
+        [20, 0, 0],
+        [20, 20, 0],
+        [0, 20, 0],
+        [0, 0, 0],
+    ]),
+    holes=[
+        Polyline([
+            [6, 6, 0],
+            [14, 6, 0],
+            [14, 14, 0],
+            [6, 14, 0],
+            [6, 6, 0],
+        ]),
+    ],
     copies=3,
 )
 
 sheets: nest_sheets = nest_sheets()
 sheets.add_sheet(
-    Polyline([[0, 0, 0], [120, 0, 0], [120, 120, 0], [0, 120, 0], [0, 0, 0]]),
-    holes=[Polyline([[50, 50, 0], [65, 50, 0], [65, 65, 0], [50, 65, 0], [50, 50, 0]])],
+    Polyline([
+        [0, 0, 0],
+        [120, 0, 0],
+        [120, 120, 0],
+        [0, 120, 0],
+        [0, 0, 0],
+    ]),
+    holes=[
+        Polyline([
+            [50, 50, 0],
+            [65, 50, 0],
+            [65, 65, 0],
+            [50, 65, 0],
+            [50, 50, 0],
+        ]),
+    ],
 )
 
 # 2. nest with the collision engine

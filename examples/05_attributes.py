@@ -22,15 +22,37 @@ def centroid(polyline: Polyline) -> Point:
 
 
 # 1. parts, each carrying a point at its centroid as an attribute (moves with the part)
+outlines = [
+    Polyline([
+        [0, 0, 0],
+        [30, 0, 0],
+        [30, 12, 0],
+        [0, 12, 0],
+        [0, 0, 0],
+    ]),
+    Polyline([
+        [0, 0, 0],
+        [20, 0, 0],
+        [20, 20, 0],
+        [0, 20, 0],
+        [0, 0, 0],
+    ]),
+]
+
 geo: nest_geo = nest_geo()
-for outline in [
-    Polyline([[0, 0, 0], [30, 0, 0], [30, 12, 0], [0, 12, 0], [0, 0, 0]]),
-    Polyline([[0, 0, 0], [20, 0, 0], [20, 20, 0], [0, 20, 0], [0, 0, 0]]),
-]:
+for outline in outlines:
     geo.add_part(outline, attributes=[centroid(outline)], copies=4)
 
 sheets: nest_sheets = nest_sheets()
-sheets.add_sheet(Polyline([[0, 0, 0], [120, 0, 0], [120, 120, 0], [0, 120, 0], [0, 0, 0]]))
+sheets.add_sheet(
+    Polyline([
+        [0, 0, 0],
+        [120, 0, 0],
+        [120, 120, 0],
+        [0, 120, 0],
+        [0, 0, 0],
+    ]),
+)
 
 # 2. nest
 result: nest_result = opennest_collision().solve(geo, sheets)
