@@ -37,7 +37,9 @@ jobs:
         with:
           output-dir: wheelhouse
         env:
-          CIBW_ENVIRONMENT: "SETUPTOOLS_SCM_PRETEND_VERSION=${{ env.SCM_VERSION }}"
+          # Keep MACOSX_DEPLOYMENT_TARGET here too — CIBW_ENVIRONMENT replaces (not merges) the
+          # pyproject environment, so it must carry every var the build needs.
+          CIBW_ENVIRONMENT: "SETUPTOOLS_SCM_PRETEND_VERSION=${{ env.SCM_VERSION }} MACOSX_DEPLOYMENT_TARGET=11.0"
 
       - uses: actions/upload-artifact@v4
         with:

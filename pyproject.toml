@@ -51,6 +51,8 @@ CMAKE_POLICY_DEFAULT_CMP0135 = "NEW"
 # ============================================================================
 
 [tool.cibuildwheel]
+# We ship a single cp312 abi3 wheel per platform (wheel.py-api = "cp312"), so build once.
+build = ["cp312-*"]
 build-verbosity = 1
 test-requires = ["numpy>=1.24", "compas>=2.15", "pytest"]
 test-command = "pytest {project}/tests"
@@ -61,8 +63,9 @@ skip = ["*_i686", "*-musllinux_*", "*-win32", "pp*"]
 before-all = "git submodule update --init --recursive"
 
 [tool.cibuildwheel.macos]
-environment = { MACOSX_DEPLOYMENT_TARGET = "11.00" }
 archs = ["x86_64", "arm64"]
+# Note: MACOSX_DEPLOYMENT_TARGET is set via CIBW_ENVIRONMENT in build.yml (alongside the scm
+# version) so it is not clobbered by that variable.
 
 # ============================================================================
 # pytest / ruff
