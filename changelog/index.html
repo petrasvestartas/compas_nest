@@ -564,6 +564,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -745,6 +749,62 @@
     
   
     Offsetting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/compas_nest.pack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pack (grid)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/compas_nest.text/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Text (font)
   
 
     
@@ -1050,10 +1110,18 @@
 <li><code>opennest_collision</code> wrapper around the physics / overlap-relaxation engine (<code>np_nest</code>), with a non-blocking <code>start()</code> + <code>collision_solve</code> handle for live animation.</li>
 <li><code>opennest</code> wrapper around the NFP + genetic-algorithm engine (<code>nfp_nest</code>).</li>
 <li><code>nest_result</code> with world-placed geometry grouped per sheet and <code>to_json()</code> (placed polylines + transformations) serialization.</li>
-<li>nanobind C++ bindings <code>_nest_physics</code> and <code>_nfp_nest</code>.</li>
+<li>nanobind C++ bindings <code>_nest_physics</code>, <code>_nfp_nest</code>, and <code>_clipper</code> (Clipper2 offsetting).</li>
+<li><code>opennest.start()</code> + <code>nfp_solve</code> handle for live NFP animation.</li>
+<li><code>offset_geo</code> / <code>offset_sheets</code> / <code>offset_polyline</code> — Clipper2 clearance offsetting (elements grow, sheets shrink); <code>nest_result.placed_polylines(geo=...)</code> to render original parts after solving on offset geometry.</li>
+<li><code>pack</code> — simple grid/array layout (no solving) returning a <code>nest_result</code>.</li>
+<li><code>text_to_polylines</code> — single-stroke text from the OpenNest XML fonts (<code>regular</code> / <code>bold</code>).</li>
+<li><code>nest_result.to_obj()</code> — placed outlines + holes as OBJ; examples save JSON + OBJ.</li>
 <li>compas_viewer examples (top view, grouped scene, live animation, real 48-element dataset) and pytest smoke tests.</li>
 </ul>
 <h3 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Version is now derived from git via setuptools-scm (every push publishes a <code>0.1.1.devN</code>; tag <code>vX.Y.Z</code> for a release).</li>
+</ul>
 <h3 id="removed">Removed<a class="headerlink" href="#removed" title="Permanent link">&para;</a></h3>
 
 
