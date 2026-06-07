@@ -52,3 +52,29 @@ jobs:
         with:
           name: sdist
           path: dist/*.tar.gz
+
+  # Publish to PyPI on every push to main. `skip-existing` makes this a no-op when the version in
+  # src/compas_nest/__init__.py is unchanged, so bump it to release a new version.
+  publish:
+    name: Publish to PyPI
+    needs: [build_wheels, build_sdist]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/compas_nest
+    permissions:
+      id-token: write   # OIDC trusted publishing (no API token needed)
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: wheels-*
+          path: dist
+          merge-multiple: true
+      - uses: actions/download-artifact@v4
+        with:
+          name: sdist
+          path: dist
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          skip-existing: true
