@@ -48,6 +48,8 @@ nav:
       - 03 Live animation (NFP): examples/03_nfp_animated.md
       - 04 Clearance offset: examples/04_collision_dataset.md
       - 05 Attributes: examples/05_attributes.md
+      - 06 Pack (grid): examples/06_pack.md
+      - 07 Text (font): examples/07_text.md
   - API Reference:
       - api/index.md
       - Data structures: api/compas_nest.datastructures.md

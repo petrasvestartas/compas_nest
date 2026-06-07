@@ -8,3 +8,5 @@ placed geometry to `data/output/` as JSON (full result) and OBJ (outlines + hole
 3. [Live animation (NFP)](03_nfp_animated.md) — watch the GA layout evolve.
 4. [Clearance offset](04_collision_dataset.md) — add gaps with `offset_geo` / `offset_sheets`.
 5. [Attributes](05_attributes.md) — carry geometry (a centroid point) through placement.
+6. [Pack (grid)](06_pack.md) — simple grid/array layout with `pack` (no nesting).
+7. [Text (font)](07_text.md) — single-stroke text with `text_to_polylines`.
