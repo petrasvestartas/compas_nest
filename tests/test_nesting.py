@@ -11,6 +11,8 @@ from compas_nest import offset_polyline
 from compas_nest import offset_sheets
 from compas_nest import opennest
 from compas_nest import opennest_collision
+from compas_nest import pack
+from compas_nest import text_to_polylines
 
 
 def rect(x0, y0, w, h):
@@ -115,6 +117,24 @@ def test_offset_clearance_end_to_end(geo, sheets):
             for p in part["outline"].points:
                 assert -1e-6 <= p[0] <= 100 + 1e-6
                 assert -1e-6 <= p[1] <= 100 + 1e-6
+
+
+def test_pack_grid(geo):
+    result = pack(geo, columns=2, gap_x=5.0, gap_y=5.0)
+    assert len(result.placed) == 5  # 3 + 2 copies, all placed
+    assert result.n_sheets == 1
+    # the four corners of each placed outline are finite and the layout spans > one cell
+    xs = [p[0] for g in result.placed_polylines() for part in g["parts"] for p in part["outline"].points]
+    assert max(xs) > 20  # wrapped/advanced beyond a single part
+
+
+def test_text_to_polylines():
+    strokes = text_to_polylines("AB", height=10.0)
+    assert len(strokes) >= 3  # A = 2 strokes, B = 1
+    ys = [p[1] for pl in strokes for p in pl.points]
+    assert max(ys) <= 10.0 + 1e-6  # scaled to height
+    # a curved glyph is arc-sampled (not a single chord)
+    assert max(len(pl.points) for pl in text_to_polylines("C", height=10.0)) > 3
 
 
 def test_from_size_factory():

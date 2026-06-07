@@ -30,6 +30,8 @@ from .nfp import opennest  # noqa: E402
 from .offset import offset_geo  # noqa: E402
 from .offset import offset_polyline  # noqa: E402
 from .offset import offset_sheets  # noqa: E402
+from .pack import pack  # noqa: E402
+from .text import text_to_polylines  # noqa: E402
 
 __all__ = [
     "HOME",
@@ -46,4 +48,6 @@ __all__ = [
     "offset_polyline",
     "offset_geo",
     "offset_sheets",
+    "pack",
+    "text_to_polylines",
 ]

@@ -55,6 +55,8 @@ nav:
       - NFP engine: api/compas_nest.nfp.md
       - Result: api/compas_nest.result.md
       - Offsetting: api/compas_nest.offset.md
+      - Pack (grid): api/compas_nest.pack.md
+      - Text (font): api/compas_nest.text.md
       - Viewer: api/compas_nest.viewer.md
   - Credits: credits.md
   - Changelog: changelog.md
