@@ -57,15 +57,19 @@ sheets.add_sheet(
 # 2. nest
 result: nest_result = opennest_collision().solve(geo, sheets)
 
-# 3. view: placed outlines (blue) + their centroid points (red) carried along by the placement
+# 3. view: each placed element (outline + its centroid point) in its own scene group
 viewer: Viewer = Viewer()
-for sheet in sheets.sheets:
-    viewer.scene.add(sheet["outline"], linecolor=BLACK, linewidth=2)
-for group in result.placed_polylines():
-    for part in group["parts"]:
-        viewer.scene.add(part["outline"], linecolor=BLUE, linewidth=2)
+sheets_group = viewer.scene.add_group(name="sheets")
+for i, sheet in enumerate(sheets.sheets):
+    sheets_group.add(sheet["outline"], name="sheet_%d" % i, linecolor=BLACK, linewidth=2)
+
+elements = viewer.scene.add_group(name="elements")
+for k, group in enumerate(result.placed_polylines()):
+    for j, part in enumerate(group["parts"]):
+        element = viewer.scene.add_group(name="element_%d_%d" % (k, j), parent=elements)
+        element.add(part["outline"], linecolor=BLUE, linewidth=2)
         for attribute in part["attributes"]:
-            viewer.scene.add(attribute, pointcolor=RED, pointsize=12)
+            element.add(attribute, pointcolor=RED, pointsize=12)
 viewer.show()
 
 # 4. save to JSON (full result, incl. transformed attributes) and OBJ (outlines + holes)
