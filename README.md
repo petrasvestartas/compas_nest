@@ -1,5 +1,7 @@
 # compas_nest
 
+**Documentation: https://petrasvestartas.github.io/compas_nest/**
+
 2D irregular nesting for the [COMPAS](https://compas.dev) framework — Python bindings for the
 [OpenNest](https://github.com/petrasvestartas/OpenNest) C++ engines, built with
 [nanobind](https://github.com/wjakob/nanobind).

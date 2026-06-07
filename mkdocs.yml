@@ -6,23 +6,54 @@ site_author: Petras Vestartas
 theme:
   name: material
   palette:
-    - scheme: default
+    - media: "(prefers-color-scheme)"
+      primary: blue
+      accent: light blue
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue
+      accent: light blue
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
-    - scheme: slate
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue
+      accent: light blue
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
+  font:
+    text: Roboto
+    code: Roboto Mono
   features:
-    - navigation.sections
     - content.code.copy
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - toc.follow
 
 nav:
   - Home: index.md
   - Installation: installation.md
-  - Examples: examples.md
-  - API Reference: reference.md
+  - Examples:
+      - examples/index.md
+      - Collision: examples/01_collision.md
+      - NFP + GA: examples/02_nfp.md
+      - Live animation (NFP): examples/03_nfp_animated.md
+      - Clearance offset: examples/04_clearance.md
+      - Attributes: examples/05_attributes.md
+  - API Reference:
+      - api/index.md
+      - Data structures: api/compas_nest.datastructures.md
+      - Collision engine: api/compas_nest.collision.md
+      - NFP engine: api/compas_nest.nfp.md
+      - Result: api/compas_nest.result.md
+      - Offsetting: api/compas_nest.offset.md
+      - Viewer: api/compas_nest.viewer.md
   - Credits: credits.md
   - Changelog: changelog.md
 
@@ -43,8 +74,6 @@ markdown_extensions:
   - markdown_callouts
   - pymdownx.superfences
   - pymdownx.highlight
-  - pymdownx.tabbed:
-      alternate_style: true
   - pymdownx.snippets:
       base_path: ["."]
       check_paths: true
