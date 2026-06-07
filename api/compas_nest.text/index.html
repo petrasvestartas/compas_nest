@@ -1195,7 +1195,7 @@ renders a string to a list of :class:<code>compas.geometry.Polyline</code> (arcs
 
 
 <h3 id="compas_nest.text.text_to_polylines" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">text_to_polylines</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="s1">&#39;regular&#39;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">spacing</span><span class="o">=</span><span class="n">H_SPACING</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">text_to_polylines</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="s1">&#39;regular&#39;</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">spacing</span><span class="o">=</span><span class="n">H_SPACING</span><span class="p">)</span></code>
 
 <a href="#compas_nest.text.text_to_polylines" class="headerlink" title="Permanent link">&para;</a></h3>
 
@@ -1203,6 +1203,10 @@ renders a string to a list of :class:<code>compas.geometry.Polyline</code> (arcs
     <div class="doc doc-contents ">
 
         <p>Render <code>text</code> to a list of single-stroke :class:<code>compas.geometry.Polyline</code>.</p>
+<p>The text is laid out on the XY plane with the first line's baseline-left at the origin, then
+oriented/placed onto <code>frame</code> — so you can drop a label anywhere (e.g. on a nested sheet) with
+any orientation. <code>frame</code> axes also scale: use a frame with unit axes to keep <code>height</code> as the
+cap height.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -1266,18 +1270,19 @@ renders a string to a list of :class:<code>compas.geometry.Polyline</code> (arcs
           </tr>
           <tr class="doc-section-item">
             <td>
-                <code>origin</code>
+                <code>frame</code>
             </td>
             <td>
-                  <code><span title="tuple">tuple</span>[<span title="float">float</span>, <span title="float">float</span>]</code>
+                  <code>:class:`compas.geometry.Frame`</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Lower-left start position of the first line.</p>
+                <p>Where to place/orient the text. Its origin is the text origin, its x-axis the reading
+direction and y-axis "up". Defaults to the world XY frame.</p>
               </div>
             </td>
             <td>
-                  <code>(0.0, 0.0)</code>
+                  <code>None</code>
             </td>
           </tr>
           <tr class="doc-section-item">
@@ -1315,7 +1320,7 @@ renders a string to a list of :class:<code>compas.geometry.Polyline</code> (arcs
             </td>
             <td>
               <div class="doc-md-description">
-                <p>One polyline per stroke, in the XY plane, scaled by <code>height</code>.</p>
+                <p>One polyline per stroke.</p>
               </div>
             </td>
           </tr>
@@ -1362,8 +1367,24 @@ renders a string to a list of :class:<code>compas.geometry.Polyline</code> (arcs
 <span class="normal">127</span>
 <span class="normal">128</span>
 <span class="normal">129</span>
-<span class="normal">130</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">text_to_polylines</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="s2">&quot;regular&quot;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">spacing</span><span class="o">=</span><span class="n">H_SPACING</span><span class="p">):</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">text_to_polylines</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="s2">&quot;regular&quot;</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">spacing</span><span class="o">=</span><span class="n">H_SPACING</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Render ``text`` to a list of single-stroke :class:`compas.geometry.Polyline`.</span>
+
+<span class="sd">    The text is laid out on the XY plane with the first line&#39;s baseline-left at the origin, then</span>
+<span class="sd">    oriented/placed onto ``frame`` — so you can drop a label anywhere (e.g. on a nested sheet) with</span>
+<span class="sd">    any orientation. ``frame`` axes also scale: use a frame with unit axes to keep ``height`` as the</span>
+<span class="sd">    cap height.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1373,23 +1394,23 @@ renders a string to a list of :class:<code>compas.geometry.Polyline</code> (arcs
 <span class="sd">        Cap height (em) the glyphs are scaled to.</span>
 <span class="sd">    font : str, optional</span>
 <span class="sd">        Packaged font name: ``&quot;regular&quot;`` or ``&quot;bold&quot;``.</span>
-<span class="sd">    origin : tuple[float, float], optional</span>
-<span class="sd">        Lower-left start position of the first line.</span>
+<span class="sd">    frame : :class:`compas.geometry.Frame`, optional</span>
+<span class="sd">        Where to place/orient the text. Its origin is the text origin, its x-axis the reading</span>
+<span class="sd">        direction and y-axis &quot;up&quot;. Defaults to the world XY frame.</span>
 <span class="sd">    spacing : float, optional</span>
 <span class="sd">        Extra gap between glyphs, in em.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    list[:class:`compas.geometry.Polyline`]</span>
-<span class="sd">        One polyline per stroke, in the XY plane, scaled by ``height``.</span>
+<span class="sd">        One polyline per stroke.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">glyphs</span> <span class="o">=</span> <span class="n">_font</span><span class="p">(</span><span class="n">font</span><span class="p">)</span>
     <span class="n">fallback</span> <span class="o">=</span> <span class="n">glyphs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\0</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">ox</span><span class="p">,</span> <span class="n">oy</span> <span class="o">=</span> <span class="n">origin</span>
     <span class="n">out</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">line_i</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)):</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">ox</span>
-        <span class="n">y</span> <span class="o">=</span> <span class="n">oy</span> <span class="o">-</span> <span class="n">line_i</span> <span class="o">*</span> <span class="n">V_SPACING</span> <span class="o">*</span> <span class="n">height</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="n">line_i</span> <span class="o">*</span> <span class="n">V_SPACING</span> <span class="o">*</span> <span class="n">height</span>
         <span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
             <span class="n">glyph</span> <span class="o">=</span> <span class="n">glyphs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ch</span><span class="p">,</span> <span class="n">fallback</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">glyph</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -1399,6 +1420,12 @@ renders a string to a list of :class:<code>compas.geometry.Polyline</code> (arcs
             <span class="k">for</span> <span class="n">stroke</span> <span class="ow">in</span> <span class="n">glyph</span><span class="p">[</span><span class="s2">&quot;strokes&quot;</span><span class="p">]:</span>
                 <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Polyline</span><span class="p">([[</span><span class="n">x</span> <span class="o">+</span> <span class="n">px</span> <span class="o">*</span> <span class="n">height</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">py</span> <span class="o">*</span> <span class="n">height</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span> <span class="k">for</span> <span class="p">(</span><span class="n">px</span><span class="p">,</span> <span class="n">py</span><span class="p">)</span> <span class="ow">in</span> <span class="n">stroke</span><span class="p">]))</span>
             <span class="n">x</span> <span class="o">+=</span> <span class="n">glyph</span><span class="p">[</span><span class="s2">&quot;end&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">height</span> <span class="o">+</span> <span class="n">spacing</span> <span class="o">*</span> <span class="n">height</span>
+
+    <span class="k">if</span> <span class="n">frame</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">compas.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">Transformation</span>
+
+        <span class="n">matrix</span> <span class="o">=</span> <span class="n">Transformation</span><span class="o">.</span><span class="n">from_frame</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="p">[</span><span class="n">pl</span><span class="o">.</span><span class="n">transformed</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span> <span class="k">for</span> <span class="n">pl</span> <span class="ow">in</span> <span class="n">out</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">out</span>
 </code></pre></div></td></tr></table></div>
             </details>
