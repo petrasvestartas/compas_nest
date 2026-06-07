@@ -2,8 +2,7 @@
 
 2D irregular nesting for the [COMPAS](https://compas.dev) framework — Python bindings for the
 [OpenNest](https://github.com/petrasvestartas/OpenNest) C++ engines, built with
-[nanobind](https://github.com/wjakob/nanobind) (the same toolchain as
-[compas_cgal](https://github.com/compas-dev/compas_cgal)).
+[nanobind](https://github.com/wjakob/nanobind).
 
 Nest polylines **with holes** into sheets **with holes**, with live terminal progress and
 [compas_viewer](https://github.com/compas-dev/compas_viewer) visualization.
@@ -83,12 +82,6 @@ result.to_json("data/output/quickstart.json")
 See the `examples/` folder for the viewer workflows, and the
 [documentation](https://petrasvestartas.github.io/compas_nest/) for examples, API reference and credits.
 
-## Credits
+## License & credits
 
-`compas_nest` is the COMPAS / Python binding of the [OpenNest](https://github.com/petrasvestartas/OpenNest)
-C++ engines by **Petras Vestartas**, which build on SVGnest/Deepnest (NFP+GA), jagua-rs/sparrow (physics
-strip-packing), Clipper2 and Boost.Polygon. Full attributions: [docs/credits.md](docs/credits.md).
-
-## License
-
-MIT
+MIT — see [LICENSE](LICENSE). Attributions for the underlying work are in [CREDITS.md](CREDITS.md).

@@ -61,9 +61,9 @@ fi
 # --- install dependencies (build + runtime + viewer + tests) ----------------
 echo ">> Installing dependencies into .venv ..."
 uv pip install --python "$VENV_PY" \
-    nanobind>=2.12 \
+    "nanobind>=2.12" \
     "scikit-build-core[pyproject]>=0.10" \
-    cmake>=3.15 \
+    "cmake>=3.15" \
     ninja \
     "numpy>=1.24" \
     "compas>=2.15,<3" \
