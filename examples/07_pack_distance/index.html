@@ -13,10 +13,10 @@
       
       
       
-        <link rel="prev" href="../05_attributes/">
+        <link rel="prev" href="../06_pack_array/">
       
       
-        <link rel="next" href="../07_text/">
+        <link rel="next" href="../08_text/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>06 Pack (grid) - compas_nest</title>
+        <title>07 Pack (distance) - compas_nest</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#06-pack-grid-array" class="md-skip">
+        <a href="#07-pack-distance" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              06 Pack (grid)
+              07 Pack (distance)
             
           </span>
         </div>
@@ -346,6 +346,8 @@
       
         
       
+        
+      
     
     
     
@@ -544,6 +546,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_pack_array/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 Pack (array)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -563,7 +593,7 @@
   <span class="md-ellipsis">
     
   
-    06 Pack (grid)
+    07 Pack (distance)
   
 
     
@@ -585,14 +615,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../07_text/" class="md-nav__link">
+      <a href="../08_text/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    07 Text (font)
+    08 Text (font)
   
 
     
@@ -1019,11 +1049,11 @@
   
 
 
-<h1 id="06-pack-grid-array">06 · Pack (grid array)<a class="headerlink" href="#06-pack-grid-array" title="Permanent link">&para;</a></h1>
-<p>Lay parts out in a simple grid/array with <code>pack</code> — a deterministic layout, no nesting. It returns a
-<code>nest_result</code>, so the same <code>placed_polylines</code> / <code>to_json</code> / <code>to_obj</code> apply.</p>
+<h1 id="07-pack-distance">07 · Pack (distance)<a class="headerlink" href="#07-pack-distance" title="Permanent link">&para;</a></h1>
+<p>Pack parts by <strong>row width</strong> with <code>pack(..., max_width=...)</code>: a row fills up to the given distance,
+then the next element wraps to a new row.</p>
 <!-- TODO: image -->
-<p><img alt="pack" src="../images/06_pack.png" /></p>
+<p><img alt="pack distance" src="../images/07_pack_distance.png" /></p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">compas.colors</span><span class="w"> </span><span class="kn">import</span> <span class="n">Color</span>
@@ -1035,7 +1065,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">compas_nest</span><span class="w"> </span><span class="kn">import</span> <span class="n">pack</span>
 
 <span class="n">BLUE</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">from_hex</span><span class="p">(</span><span class="s2">&quot;#0072B2&quot;</span><span class="p">)</span>
-<span class="n">OUTPUT</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">&quot;data&quot;</span> <span class="o">/</span> <span class="s2">&quot;output&quot;</span> <span class="o">/</span> <span class="s2">&quot;06_pack.json&quot;</span>
+<span class="n">OUTPUT</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">&quot;data&quot;</span> <span class="o">/</span> <span class="s2">&quot;output&quot;</span> <span class="o">/</span> <span class="s2">&quot;07_pack_distance.json&quot;</span>
 
 <span class="c1"># 1. parts (one with a hole) with several copies each</span>
 <span class="n">geo</span><span class="p">:</span> <span class="n">nest_geo</span> <span class="o">=</span> <span class="n">nest_geo</span><span class="p">()</span>
@@ -1069,10 +1099,10 @@
     <span class="n">copies</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="c1"># 2. pack into a simple grid (no nesting): 5 cells per row, 8-unit gaps</span>
-<span class="n">result</span><span class="p">:</span> <span class="n">nest_result</span> <span class="o">=</span> <span class="n">pack</span><span class="p">(</span><span class="n">geo</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">gap_x</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span> <span class="n">gap_y</span><span class="o">=</span><span class="mf">8.0</span><span class="p">)</span>
+<span class="c1"># 2. pack by distance: fill a row up to max_width, then wrap to the next row</span>
+<span class="n">result</span><span class="p">:</span> <span class="n">nest_result</span> <span class="o">=</span> <span class="n">pack</span><span class="p">(</span><span class="n">geo</span><span class="p">,</span> <span class="n">max_width</span><span class="o">=</span><span class="mf">120.0</span><span class="p">,</span> <span class="n">gap_x</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">gap_y</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span>
 
-<span class="c1"># 3. view the grid layout (elements blue)</span>
+<span class="c1"># 3. view the layout (elements blue)</span>
 <span class="n">viewer</span><span class="p">:</span> <span class="n">Viewer</span> <span class="o">=</span> <span class="n">Viewer</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">result</span><span class="o">.</span><span class="n">placed_polylines</span><span class="p">():</span>
     <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">group</span><span class="p">[</span><span class="s2">&quot;parts&quot;</span><span class="p">]:</span>
