@@ -1,0 +1,9 @@
+bump-my-version
+cibuildwheel
+compas_viewer
+nanobind>=2.12
+pytest>=7.0.0
+ruff
+scikit-build-core[pyproject]>=0.10
+twine
+wheel

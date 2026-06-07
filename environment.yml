@@ -1,0 +1,29 @@
+# Conda environment for developing/building compas_nest.
+#
+#   conda env create -f environment.yml
+#   conda activate compas_nest
+#   pip install --no-build-isolation -ve .
+#
+# Note: a C++17/20 compiler is required to build the extension modules
+# (MSVC on Windows, clang on macOS, gcc/clang on Linux). On conda you can add
+# `vs2022_win-64` (Windows) or `clang clangxx` (macOS/Linux) to the list below.
+name: compas_nest
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pip
+  - cmake>=3.15
+  - ninja
+  - pip:
+      # build backend
+      - nanobind>=2.12
+      - scikit-build-core[pyproject]>=0.10
+      # runtime
+      - numpy>=1.24
+      - compas>=2.15,<3
+      # visualization
+      - compas_viewer
+      # testing / tooling
+      - pytest>=7.0.0
+      - ruff

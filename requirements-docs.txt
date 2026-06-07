@@ -1,0 +1,6 @@
+mkdocs>=1.6
+mkdocs-material>=9.5
+mkdocstrings[python]
+markdown-callouts>=0.4
+mkdocs-autorefs>=1.4
+mkdocs-section-index>=0.3

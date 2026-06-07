@@ -1,0 +1,101 @@
+[build-system]
+requires = ["scikit-build-core >=0.10", "nanobind >=2.12"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "compas_nest"
+description = "2D irregular nesting (OpenNest) for COMPAS."
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{ name = "Petras Vestartas", email = "petrasvestartas@gmail.com" }]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering",
+]
+dependencies = [
+    "numpy>=1.24",
+    "compas>=2.15,<3",
+]
+dynamic = ["version"]
+
+[project.urls]
+Homepage = "https://github.com/petrasvestartas/compas_nest"
+Repository = "https://github.com/petrasvestartas/compas_nest"
+
+# ============================================================================
+# scikit-build-core
+# ============================================================================
+
+[tool.scikit-build]
+minimum-version = "build-system.requires"
+build-dir = "build/{wheel_tag}"
+wheel.py-api = "cp312"
+wheel.packages = ["src/compas_nest"]
+cmake.version = ">=3.15"
+cmake.build-type = "Release"
+sdist.include = ["external/nest/**"]
+
+[tool.scikit-build.metadata.version]
+provider = "scikit_build_core.metadata.regex"
+input = "src/compas_nest/__init__.py"
+
+[tool.scikit-build.cmake.define]
+CMAKE_POLICY_DEFAULT_CMP0135 = "NEW"
+
+# ============================================================================
+# cibuildwheel
+# ============================================================================
+
+[tool.cibuildwheel]
+build-verbosity = 1
+test-requires = ["numpy>=1.24", "compas>=2.15", "pytest"]
+test-command = "pytest {project}/tests"
+build-frontend = "pip"
+manylinux-x86_64-image = "manylinux_2_28"
+skip = ["*_i686", "*-musllinux_*", "*-win32", "pp*"]
+# Pull in the C++ submodule sources before building each wheel.
+before-all = "git submodule update --init --recursive"
+
+[tool.cibuildwheel.macos]
+environment = { MACOSX_DEPLOYMENT_TARGET = "11.00" }
+archs = ["x86_64", "arm64"]
+
+# ============================================================================
+# bump-my-version
+# ============================================================================
+
+[tool.bumpversion]
+current_version = "0.1.0"
+message = "Bump version to {new_version}"
+commit = true
+tag = true
+
+[[tool.bumpversion.files]]
+filename = "src/compas_nest/__init__.py"
+search = "{current_version}"
+replace = "{new_version}"
+
+[[tool.bumpversion.files]]
+filename = "CHANGELOG.md"
+search = "Unreleased"
+replace = "[{new_version}] {now:%Y-%m-%d}"
+
+# ============================================================================
+# pytest / ruff
+# ============================================================================
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+testpaths = ["tests"]
+addopts = ["-ra", "--tb=short", "--import-mode=importlib"]
+
+[tool.ruff]
+line-length = 179
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401", "I001"]
