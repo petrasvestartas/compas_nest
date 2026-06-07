@@ -13,10 +13,10 @@
       
       
       
-        <link rel="prev" href="../">
+        <link rel="prev" href="../05_attributes/">
       
       
-        <link rel="next" href="../02_nfp_viewer/">
+        <link rel="next" href="../07_text/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>01 Collision - compas_nest</title>
+        <title>06 Pack (grid) - compas_nest</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#01-collision" class="md-skip">
+        <a href="#06-pack-grid-array" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              01 Collision
+              06 Pack (grid)
             
           </span>
         </div>
@@ -404,19 +404,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../01_collision_viewer/" class="md-nav__link">
         
   
   
@@ -432,7 +423,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -554,10 +544,19 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../06_pack/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -573,6 +572,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -1019,10 +1019,11 @@
   
 
 
-<h1 id="01-collision">01 · Collision<a class="headerlink" href="#01-collision" title="Permanent link">&para;</a></h1>
-<p>Nest parts (one with a hole) into a sheet (with a hole) using <code>opennest_collision</code>, shown with the
-default compas_viewer (sheets black, elements blue).</p>
-<p><img alt="collision" src="../../images/01_collision_viewer.png" /></p>
+<h1 id="06-pack-grid-array">06 · Pack (grid array)<a class="headerlink" href="#06-pack-grid-array" title="Permanent link">&para;</a></h1>
+<p>Lay parts out in a simple grid/array with <code>pack</code> — a deterministic layout, no nesting. It returns a
+<code>nest_result</code>, so the same <code>placed_polylines</code> / <code>to_json</code> / <code>to_obj</code> apply.</p>
+<!-- TODO: image -->
+<p><img alt="pack" src="../images/06_pack.png" /></p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">compas.colors</span><span class="w"> </span><span class="kn">import</span> <span class="n">Color</span>
@@ -1031,14 +1032,12 @@ default compas_viewer (sheets black, elements blue).</p>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">compas_nest</span><span class="w"> </span><span class="kn">import</span> <span class="n">nest_geo</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">compas_nest</span><span class="w"> </span><span class="kn">import</span> <span class="n">nest_result</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">compas_nest</span><span class="w"> </span><span class="kn">import</span> <span class="n">nest_sheets</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">compas_nest</span><span class="w"> </span><span class="kn">import</span> <span class="n">opennest_collision</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">compas_nest</span><span class="w"> </span><span class="kn">import</span> <span class="n">pack</span>
 
-<span class="n">BLACK</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">from_hex</span><span class="p">(</span><span class="s2">&quot;#000000&quot;</span><span class="p">)</span>
 <span class="n">BLUE</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">from_hex</span><span class="p">(</span><span class="s2">&quot;#0072B2&quot;</span><span class="p">)</span>
-<span class="n">OUTPUT</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">&quot;data&quot;</span> <span class="o">/</span> <span class="s2">&quot;output&quot;</span> <span class="o">/</span> <span class="s2">&quot;01_collision_viewer.json&quot;</span>
+<span class="n">OUTPUT</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">&quot;data&quot;</span> <span class="o">/</span> <span class="s2">&quot;output&quot;</span> <span class="o">/</span> <span class="s2">&quot;06_pack.json&quot;</span>
 
-<span class="c1"># 1. parts (one with a hole) and a sheet (with a hole)</span>
+<span class="c1"># 1. parts (one with a hole) with several copies each</span>
 <span class="n">geo</span><span class="p">:</span> <span class="n">nest_geo</span> <span class="o">=</span> <span class="n">nest_geo</span><span class="p">()</span>
 <span class="n">geo</span><span class="o">.</span><span class="n">add_part</span><span class="p">(</span>
     <span class="n">Polyline</span><span class="p">([</span>
@@ -1048,7 +1047,7 @@ default compas_viewer (sheets black, elements blue).</p>
         <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
         <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
     <span class="p">]),</span>
-    <span class="n">copies</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">copies</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">geo</span><span class="o">.</span><span class="n">add_part</span><span class="p">(</span>
     <span class="n">Polyline</span><span class="p">([</span>
@@ -1067,38 +1066,14 @@ default compas_viewer (sheets black, elements blue).</p>
             <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
         <span class="p">]),</span>
     <span class="p">],</span>
-    <span class="n">copies</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">copies</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="n">sheets</span><span class="p">:</span> <span class="n">nest_sheets</span> <span class="o">=</span> <span class="n">nest_sheets</span><span class="p">()</span>
-<span class="n">sheets</span><span class="o">.</span><span class="n">add_sheet</span><span class="p">(</span>
-    <span class="n">Polyline</span><span class="p">([</span>
-        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">120</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">120</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-    <span class="p">]),</span>
-    <span class="n">holes</span><span class="o">=</span><span class="p">[</span>
-        <span class="n">Polyline</span><span class="p">([</span>
-            <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-            <span class="p">[</span><span class="mi">65</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-            <span class="p">[</span><span class="mi">65</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-            <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-            <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-        <span class="p">]),</span>
-    <span class="p">],</span>
-<span class="p">)</span>
+<span class="c1"># 2. pack into a simple grid (no nesting): 5 cells per row, 8-unit gaps</span>
+<span class="n">result</span><span class="p">:</span> <span class="n">nest_result</span> <span class="o">=</span> <span class="n">pack</span><span class="p">(</span><span class="n">geo</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">gap_x</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span> <span class="n">gap_y</span><span class="o">=</span><span class="mf">8.0</span><span class="p">)</span>
 
-<span class="c1"># 2. nest with the collision engine</span>
-<span class="n">result</span><span class="p">:</span> <span class="n">nest_result</span> <span class="o">=</span> <span class="n">opennest_collision</span><span class="p">()</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">geo</span><span class="p">,</span> <span class="n">sheets</span><span class="p">)</span>
-
-<span class="c1"># 3. view with compas_viewer (sheets black, placed elements blue)</span>
+<span class="c1"># 3. view the grid layout (elements blue)</span>
 <span class="n">viewer</span><span class="p">:</span> <span class="n">Viewer</span> <span class="o">=</span> <span class="n">Viewer</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">sheet</span> <span class="ow">in</span> <span class="n">sheets</span><span class="o">.</span><span class="n">sheets</span><span class="p">:</span>
-    <span class="n">viewer</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">sheet</span><span class="p">[</span><span class="s2">&quot;outline&quot;</span><span class="p">],</span> <span class="n">linecolor</span><span class="o">=</span><span class="n">BLACK</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">hole</span> <span class="ow">in</span> <span class="n">sheet</span><span class="p">[</span><span class="s2">&quot;holes&quot;</span><span class="p">]:</span>
-        <span class="n">viewer</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">hole</span><span class="p">,</span> <span class="n">linecolor</span><span class="o">=</span><span class="n">BLACK</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">result</span><span class="o">.</span><span class="n">placed_polylines</span><span class="p">():</span>
     <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">group</span><span class="p">[</span><span class="s2">&quot;parts&quot;</span><span class="p">]:</span>
         <span class="n">viewer</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">part</span><span class="p">[</span><span class="s2">&quot;outline&quot;</span><span class="p">],</span> <span class="n">linecolor</span><span class="o">=</span><span class="n">BLUE</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
