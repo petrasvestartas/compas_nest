@@ -9,7 +9,7 @@ from compas_nest import nest_result
 from compas_nest import pack
 
 BLUE: Color = Color.from_hex("#0072B2")
-OUTPUT: Path = Path(__file__).parent.parent / "data" / "output" / "06_pack.json"
+OUTPUT: Path = Path(__file__).parent.parent / "data" / "output" / "06_pack_array.json"
 
 # 1. parts (one with a hole) with several copies each
 geo: nest_geo = nest_geo()
@@ -43,8 +43,8 @@ geo.add_part(
     copies=6,
 )
 
-# 2. pack into a simple grid (no nesting): 5 cells per row, 8-unit gaps
-result: nest_result = pack(geo, columns=5, gap_x=8.0, gap_y=8.0)
+# 2. pack into an array: a fixed number of elements per row (5), wrapping to the next row
+result: nest_result = pack(geo, columns=5, gap_x=0.0, gap_y=0.0)
 
 # 3. view the grid layout (elements blue)
 viewer: Viewer = Viewer()

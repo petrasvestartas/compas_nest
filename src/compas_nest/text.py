@@ -14,13 +14,20 @@ from compas.geometry import Polyline
 
 H_SPACING = 0.1  # gap between glyphs, in em (matches OpenNest)
 V_SPACING = 1.4  # line height, in em
-_ARC_SEGMENTS = 10  # straight segments per bulge-arc
+# Arcs are emitted as straight segments (good for fabrication). Sampling is adaptive: roughly one
+# segment per ARC_STEP of sweep, so gentle curves stay light and tight curves get enough points.
+ARC_STEP = math.radians(15.0)  # max angle per segment
+_ARC_MIN = 2  # at least this many segments per arc
 
 _FONTS = {}  # name -> {char: glyph}
 
 
-def _arc_points(p1, tangent, p2, segments):
-    """Sample an arc that starts at p1 with the given start tangent and ends at p2 (excludes p1)."""
+def _arc_points(p1, tangent, p2):
+    """Sample an arc that starts at p1 with the given start tangent and ends at p2 (excludes p1).
+
+    The number of straight segments is chosen from the swept angle (~one per :data:`ARC_STEP`),
+    keeping the point count minimal while staying close to the true arc.
+    """
     x1, y1 = p1
     x2, y2 = p2
     tx, ty = tangent
@@ -43,6 +50,7 @@ def _arc_points(p1, tangent, p2, segments):
         sweep = (a2 - a1) % (2 * math.pi)
     else:
         sweep = -((a1 - a2) % (2 * math.pi))
+    segments = max(_ARC_MIN, int(math.ceil(abs(sweep) / ARC_STEP)))
     return [(cx + r * math.cos(a1 + sweep * i / segments), cy + r * math.sin(a1 + sweep * i / segments)) for i in range(1, segments + 1)]
 
 
@@ -64,7 +72,7 @@ def _parse_glyph(letter):
                 cs, sn = math.cos(d2), math.sin(d2)
                 chx, chy = tox - lx, toy - ly
                 tangent = (chx * cs - chy * sn, chx * sn + chy * cs)
-                pts.extend(_arc_points((lx, ly), tangent, (tox, toy), _ARC_SEGMENTS))
+                pts.extend(_arc_points((lx, ly), tangent, (tox, toy)))
             lx, ly = tox, toy
         strokes.append(pts)
     return {"start": start, "end": end, "strokes": strokes}

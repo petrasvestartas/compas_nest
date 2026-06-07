@@ -15,20 +15,26 @@ def _bbox(polyline):
     return min(xs), min(ys), max(xs), max(ys)
 
 
-def pack(geo, columns=10, gap_x=10.0, gap_y=10.0):
+def pack(geo, columns=10, gap_x=10.0, gap_y=10.0, max_width=None):
     """Lay parts out in a simple row-major grid (no nesting).
 
-    Each part instance (``copies`` expanded) is placed in a cell; rows wrap every ``columns`` items.
-    The x-advance uses each part's own width; the row height is the tallest part in that row.
+    Each part instance (``copies`` expanded) is placed left to right; the x-advance uses each part's
+    own width and the row height is the tallest part in that row. Two wrapping modes:
+
+    * **array** (default) — start a new row every ``columns`` items.
+    * **distance** — pass ``max_width`` and a row wraps once the next part would exceed that width
+      (``columns`` is ignored). A part wider than ``max_width`` still gets its own row.
 
     Parameters
     ----------
     geo : :class:`compas_nest.nest_geo`
         The parts to arrange (holes and attributes are carried along).
     columns : int, optional
-        Number of cells per row before wrapping.
+        Number of cells per row before wrapping (array mode).
     gap_x, gap_y : float, optional
         Gaps between cells horizontally and vertically.
+    max_width : float, optional
+        If set, wrap by row width instead of by ``columns`` (distance mode).
 
     Returns
     -------
@@ -48,6 +54,12 @@ def pack(geo, columns=10, gap_x=10.0, gap_y=10.0):
         w = maxx - minx
         h = maxy - miny
         for _ in range(copies):
+            # distance mode: wrap before placing if this part would overflow the row
+            if max_width is not None and col > 0 and (x + w) > max_width:
+                col = 0
+                x = 0.0
+                y += row_h + gap_y
+                row_h = 0.0
             placements.append(
                 {
                     "part_index": part_index,
@@ -60,7 +72,8 @@ def pack(geo, columns=10, gap_x=10.0, gap_y=10.0):
             x += w + gap_x
             row_h = max(row_h, h)
             col += 1
-            if col >= columns:
+            # array mode: wrap after a fixed number of columns
+            if max_width is None and col >= columns:
                 col = 0
                 x = 0.0
                 y += row_h + gap_y
