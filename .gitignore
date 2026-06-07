@@ -16,10 +16,15 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 .ruff_cache/
+.mypy_cache/
 .venv/
+venv/
 temp/
+.coverage
+htmlcov/
 
 # Generated example outputs
+data/output/*.obj
 data/output/*.json
 
 # Docs
@@ -27,5 +32,12 @@ site/
 
 # OS / editor
 .DS_Store
+Thumbs.db
 .vscode/
 .idea/
+*~
+*.bak
+*.tmp
+
+# Shell-redirection junk (e.g. accidental "nanobind>=2.12" -> a file named "=2.12")
+/=*
