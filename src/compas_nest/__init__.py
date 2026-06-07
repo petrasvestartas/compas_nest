@@ -1,12 +1,18 @@
 """compas_nest — 2D irregular nesting (OpenNest) for the COMPAS framework."""
 
 import os
+from importlib.metadata import PackageNotFoundError
+from importlib.metadata import version
 
 __author__ = ["Petras Vestartas"]
 __copyright__ = "Petras Vestartas"
 __license__ = "MIT License"
 __email__ = "petrasvestartas@gmail.com"
-__version__ = "0.1.0"
+
+try:
+    __version__ = version("compas_nest")
+except PackageNotFoundError:
+    __version__ = "0.0.0"
 
 HERE = os.path.dirname(__file__)
 HOME = os.path.abspath(os.path.join(HERE, "../../"))

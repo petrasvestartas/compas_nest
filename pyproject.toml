@@ -1,5 +1,5 @@
 [build-system]
-requires = ["scikit-build-core >=0.10", "nanobind >=2.12"]
+requires = ["scikit-build-core >=0.10", "nanobind >=2.12", "setuptools-scm>=8"]
 build-backend = "scikit_build_core.build"
 
 [project]
@@ -37,8 +37,11 @@ cmake.build-type = "Release"
 sdist.include = ["external/nest/**"]
 
 [tool.scikit-build.metadata.version]
-provider = "scikit_build_core.metadata.regex"
-input = "src/compas_nest/__init__.py"
+provider = "scikit_build_core.metadata.setuptools_scm"
+
+[tool.setuptools_scm]
+# PEP440-clean versions so every push is uploadable to PyPI: 0.1.1.dev3 (not ...+gHASH)
+local_scheme = "no-local-version"
 
 [tool.scikit-build.cmake.define]
 CMAKE_POLICY_DEFAULT_CMP0135 = "NEW"
@@ -60,26 +63,6 @@ before-all = "git submodule update --init --recursive"
 [tool.cibuildwheel.macos]
 environment = { MACOSX_DEPLOYMENT_TARGET = "11.00" }
 archs = ["x86_64", "arm64"]
-
-# ============================================================================
-# bump-my-version
-# ============================================================================
-
-[tool.bumpversion]
-current_version = "0.1.0"
-message = "Bump version to {new_version}"
-commit = true
-tag = true
-
-[[tool.bumpversion.files]]
-filename = "src/compas_nest/__init__.py"
-search = "{current_version}"
-replace = "{new_version}"
-
-[[tool.bumpversion.files]]
-filename = "CHANGELOG.md"
-search = "Unreleased"
-replace = "[{new_version}] {now:%Y-%m-%d}"
 
 # ============================================================================
 # pytest / ruff

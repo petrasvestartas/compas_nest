@@ -23,13 +23,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 0          # full history + tags for setuptools-scm
           submodules: recursive
+
+      # setuptools-scm can't read git inside the manylinux container, so compute the version
+      # once on the runner and pass it to every build via SETUPTOOLS_SCM_PRETEND_VERSION.
+      - name: Compute version
+        shell: bash
+        run: echo "SCM_VERSION=$(pipx run setuptools-scm)" >> "$GITHUB_ENV"
 
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.23.1
         with:
           output-dir: wheelhouse
+        env:
+          CIBW_ENVIRONMENT: "SETUPTOOLS_SCM_PRETEND_VERSION=${{ env.SCM_VERSION }}"
 
       - uses: actions/upload-artifact@v4
         with:
@@ -46,15 +54,16 @@ jobs:
           submodules: recursive
 
       - name: Build SDist
-        run: pipx run build --sdist
+        shell: bash
+        run: SETUPTOOLS_SCM_PRETEND_VERSION="$(pipx run setuptools-scm)" pipx run build --sdist
 
       - uses: actions/upload-artifact@v4
         with:
           name: sdist
           path: dist/*.tar.gz
 
-  # Publish to PyPI on every push to main. `skip-existing` makes this a no-op when the version in
-  # src/compas_nest/__init__.py is unchanged, so bump it to release a new version.
+  # Publish to PyPI on every push to main. Versions come from setuptools-scm (a unique 0.1.1.devN per
+  # commit), so every push publishes; skip-existing guards against re-runs of the same commit.
   publish:
     name: Publish to PyPI
     needs: [build_wheels, build_sdist]
