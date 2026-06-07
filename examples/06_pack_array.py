@@ -44,7 +44,7 @@ geo.add_part(
 )
 
 # 2. pack into an array: a fixed number of elements per row (5), wrapping to the next row
-result: nest_result = pack(geo, columns=5, gap_x=0.0, gap_y=0.0)
+result: nest_result = pack(geo, columns=5, gap_x=1.0, gap_y=1.0)
 
 # 3. view the grid layout (elements blue)
 viewer: Viewer = Viewer()

@@ -90,8 +90,13 @@ def _font(name="regular"):
     return _FONTS[name]
 
 
-def text_to_polylines(text, height=1.0, font="regular", origin=(0.0, 0.0), spacing=H_SPACING):
+def text_to_polylines(text, height=1.0, font="regular", frame=None, spacing=H_SPACING):
     """Render ``text`` to a list of single-stroke :class:`compas.geometry.Polyline`.
+
+    The text is laid out on the XY plane with the first line's baseline-left at the origin, then
+    oriented/placed onto ``frame`` — so you can drop a label anywhere (e.g. on a nested sheet) with
+    any orientation. ``frame`` axes also scale: use a frame with unit axes to keep ``height`` as the
+    cap height.
 
     Parameters
     ----------
@@ -101,23 +106,23 @@ def text_to_polylines(text, height=1.0, font="regular", origin=(0.0, 0.0), spaci
         Cap height (em) the glyphs are scaled to.
     font : str, optional
         Packaged font name: ``"regular"`` or ``"bold"``.
-    origin : tuple[float, float], optional
-        Lower-left start position of the first line.
+    frame : :class:`compas.geometry.Frame`, optional
+        Where to place/orient the text. Its origin is the text origin, its x-axis the reading
+        direction and y-axis "up". Defaults to the world XY frame.
     spacing : float, optional
         Extra gap between glyphs, in em.
 
     Returns
     -------
     list[:class:`compas.geometry.Polyline`]
-        One polyline per stroke, in the XY plane, scaled by ``height``.
+        One polyline per stroke.
     """
     glyphs = _font(font)
     fallback = glyphs.get("\0")
-    ox, oy = origin
     out = []
     for line_i, line in enumerate(text.split("\n")):
-        x = ox
-        y = oy - line_i * V_SPACING * height
+        x = 0.0
+        y = -line_i * V_SPACING * height
         for ch in line:
             glyph = glyphs.get(ch, fallback)
             if glyph is None:
@@ -127,4 +132,10 @@ def text_to_polylines(text, height=1.0, font="regular", origin=(0.0, 0.0), spaci
             for stroke in glyph["strokes"]:
                 out.append(Polyline([[x + px * height, y + py * height, 0.0] for (px, py) in stroke]))
             x += glyph["end"] * height + spacing * height
+
+    if frame is not None:
+        from compas.geometry import Transformation
+
+        matrix = Transformation.from_frame(frame)
+        out = [pl.transformed(matrix) for pl in out]
     return out

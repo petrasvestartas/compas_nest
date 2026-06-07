@@ -3,13 +3,14 @@
 import math
 import os
 
+from compas.data import Data
 from compas.data import json_dump
 from compas.geometry import Rotation
 from compas.geometry import Translation
 
 
-class nest_result:
-    """Placements produced by a nesting engine.
+class nest_result(Data):
+    """Placements produced by a nesting engine (a serializable COMPAS ``Data``).
 
     The placement contract (shared by both engines) is::
 
@@ -30,14 +31,36 @@ class nest_result:
         Number of sheets actually used.
     fitness : float, optional
         Solver fitness (NFP engine only).
+    name : str, optional
     """
 
-    def __init__(self, placements, geo, sheet_origins, n_sheets, fitness=None):
+    def __init__(self, placements, geo, sheet_origins, n_sheets, fitness=None, name=None):
+        super().__init__(name=name)
         self.placements = placements
         self.geo = geo
         self.sheet_origins = sheet_origins
         self.n_sheets = n_sheets
         self.fitness = fitness
+
+    @property
+    def __data__(self):
+        return {
+            "placements": [dict(p) for p in self.placements],
+            "geo": self.geo,
+            "sheet_origins": [[float(o[0]), float(o[1])] for o in self.sheet_origins],
+            "n_sheets": int(self.n_sheets),
+            "fitness": self.fitness,
+        }
+
+    @classmethod
+    def __from_data__(cls, data):
+        return cls(
+            data["placements"],
+            data["geo"],
+            [tuple(o) for o in data["sheet_origins"]],
+            data["n_sheets"],
+            data.get("fitness"),
+        )
 
     @property
     def placed(self):

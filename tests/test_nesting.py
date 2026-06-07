@@ -137,6 +137,23 @@ def test_text_to_polylines():
     assert max(len(pl.points) for pl in text_to_polylines("C", height=10.0)) > 3
 
 
+def test_result_serialization_roundtrip(geo, sheets):
+    result = opennest_collision(iterations=200, num_rotations=8, seed=1, verbose=False).solve(geo, sheets)
+    reloaded = json_loads(json_dumps(result))
+    assert type(reloaded).__name__ == "nest_result"
+    assert reloaded.n_sheets == result.n_sheets
+    assert len(reloaded.placed) == len(result.placed)
+    assert len(reloaded.placed_polylines()) == len(result.placed_polylines())  # geo survived too
+
+
+def test_text_frame_places_and_orients():
+    from compas.geometry import Frame
+
+    plain = text_to_polylines("A", height=10.0)
+    framed = text_to_polylines("A", height=10.0, frame=Frame([100, 0, 0], [1, 0, 0], [0, 1, 0]))
+    assert framed[0].points[0][0] > plain[0].points[0][0] + 90  # shifted to the frame origin
+
+
 def test_from_size_factory():
     sheets = nest_sheets.from_size(100, 50, count=2)
     assert len(sheets.sheets) == 2
