@@ -66,7 +66,8 @@ NB_MODULE(_nfp_nest, m)
            const std::vector<int> &sheet_hole_counts,
            const std::vector<int> &sheet_hole_vertex_counts,
            const std::vector<double> &sheet_hole_xy,
-           const NfpParams &params)
+           const NfpParams &params,
+           const std::vector<int> &part_rotations)
         {
             int part_count = static_cast<int>(part_vertex_counts.size());
             int sheet_count = static_cast<int>(sheet_vertex_counts.size());
@@ -80,6 +81,7 @@ NB_MODULE(_nfp_nest, m)
 
             int placed = nfp_nest(
                 part_count, ip(part_vertex_counts), dp(part_xy), ip(part_quantities),
+                ip(part_rotations),
                 ip(part_hole_counts), ip(part_hole_vertex_counts), dp(part_hole_xy),
                 sheet_count, ip(sheet_vertex_counts), dp(sheet_xy),
                 ip(sheet_hole_counts), ip(sheet_hole_vertex_counts), dp(sheet_hole_xy),
@@ -95,8 +97,11 @@ NB_MODULE(_nfp_nest, m)
         "sheet_vertex_counts"_a, "sheet_xy"_a,
         "sheet_hole_counts"_a, "sheet_hole_vertex_counts"_a, "sheet_hole_xy"_a,
         "params"_a,
+        "part_rotations"_a = std::vector<int>(),
         "Nest part instances onto sheets. Returns "
-        "(placed, tx, ty, angle, sheet_id, part_index, n_sheets, fitness).",
+        "(placed, tx, ty, angle, sheet_id, part_index, n_sheets, fitness). "
+        "part_rotations is an optional per-part rotation override (one int per part: "
+        "0 = use params.rotations; N = only N orientations; 1 = fixed); empty = global.",
         nb::call_guard<nb::gil_scoped_release>());
 
     m.def("progress", &nfp_progress, "GA generation reached so far.");

@@ -54,7 +54,8 @@ NB_MODULE(_nest_physics, m)
            const std::vector<int> &part_hole_counts,
            const std::vector<int> &part_hole_vertex_counts,
            const std::vector<double> &part_hole_xy,
-           const NpParams &params)
+           const NpParams &params,
+           const std::vector<int> &part_rotations)
         {
             int part_count = static_cast<int>(part_vertex_counts.size());
             int sheet_count = static_cast<int>(sheet_outer_vertex_counts.size());
@@ -66,6 +67,7 @@ NB_MODULE(_nest_physics, m)
 
             int rc = np_nest(
                 part_count, ip(part_vertex_counts), dp(part_xy),
+                ip(part_rotations),
                 sheet_count, ip(sheet_outer_vertex_counts), dp(sheet_outer_xy),
                 ip(sheet_hole_counts), ip(hole_vertex_counts), dp(hole_xy),
                 ip(part_hole_counts), ip(part_hole_vertex_counts), dp(part_hole_xy),
@@ -80,7 +82,10 @@ NB_MODULE(_nest_physics, m)
         "sheet_hole_counts"_a, "hole_vertex_counts"_a, "hole_xy"_a,
         "part_hole_counts"_a, "part_hole_vertex_counts"_a, "part_hole_xy"_a,
         "params"_a,
-        "Nest part outer rings onto sheets. Returns (rc, tx, ty, angle, sheet_id, n_sheets).",
+        "part_rotations"_a = std::vector<int>(),
+        "Nest part outer rings onto sheets. Returns (rc, tx, ty, angle, sheet_id, n_sheets). "
+        "part_rotations is an optional per-part rotation override (one int per part: "
+        "0 = use params.num_rotations; N = only N orientations; 1 = fixed); empty = global.",
         nb::call_guard<nb::gil_scoped_release>());
 
     // Live progress / cancellation (safe to call from another thread during nest()).
