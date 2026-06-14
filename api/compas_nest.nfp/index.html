@@ -2251,7 +2251,8 @@ live progress (GA generation + fitness); <code>Ctrl-C</code> cancels and returns
 <span class="normal">250</span>
 <span class="normal">251</span>
 <span class="normal">252</span>
-<span class="normal">253</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">opennest</span><span class="p">:</span>
+<span class="normal">253</span>
+<span class="normal">254</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">opennest</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Nest polylines (with holes) into sheets (with holes) using the NFP + genetic-algorithm engine.</span>
 
 <span class="sd">    Replicates the OpenNest grasshopper component, including carrying ``attributes``</span>
@@ -2408,6 +2409,7 @@ live progress (GA generation + fitness); <code>Ctrl-C</code> cancels and returns
                 <span class="n">sh</span><span class="p">[</span><span class="s2">&quot;vertex_counts&quot;</span><span class="p">],</span> <span class="n">sh</span><span class="p">[</span><span class="s2">&quot;xy&quot;</span><span class="p">],</span>
                 <span class="n">sh</span><span class="p">[</span><span class="s2">&quot;hole_counts&quot;</span><span class="p">],</span> <span class="n">sh</span><span class="p">[</span><span class="s2">&quot;hole_vertex_counts&quot;</span><span class="p">],</span> <span class="n">sh</span><span class="p">[</span><span class="s2">&quot;hole_xy&quot;</span><span class="p">],</span>
                 <span class="n">params</span><span class="p">,</span>
+                <span class="n">parts</span><span class="p">[</span><span class="s2">&quot;rotations&quot;</span><span class="p">],</span>   <span class="c1"># per-part rotation overrides (0 = global)</span>
             <span class="p">)</span>
 
         <span class="n">_nfp_nest</span><span class="o">.</span><span class="n">cancel_reset</span><span class="p">()</span>
@@ -2585,7 +2587,8 @@ part0 x q0, part1 x q1, ...).</p>
 <span class="normal">221</span>
 <span class="normal">222</span>
 <span class="normal">223</span>
-<span class="normal">224</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geo</span><span class="p">,</span> <span class="n">sheets</span><span class="p">):</span>
+<span class="normal">224</span>
+<span class="normal">225</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geo</span><span class="p">,</span> <span class="n">sheets</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Launch the solve on a background thread and return immediately.</span>
 
 <span class="sd">    Use this for live/animated UIs: poll :meth:`nfp_solve.snapshot` while</span>
@@ -2617,6 +2620,7 @@ part0 x q0, part1 x q1, ...).</p>
             <span class="n">sh</span><span class="p">[</span><span class="s2">&quot;vertex_counts&quot;</span><span class="p">],</span> <span class="n">sh</span><span class="p">[</span><span class="s2">&quot;xy&quot;</span><span class="p">],</span>
             <span class="n">sh</span><span class="p">[</span><span class="s2">&quot;hole_counts&quot;</span><span class="p">],</span> <span class="n">sh</span><span class="p">[</span><span class="s2">&quot;hole_vertex_counts&quot;</span><span class="p">],</span> <span class="n">sh</span><span class="p">[</span><span class="s2">&quot;hole_xy&quot;</span><span class="p">],</span>
             <span class="n">params</span><span class="p">,</span>
+            <span class="n">parts</span><span class="p">[</span><span class="s2">&quot;rotations&quot;</span><span class="p">],</span>   <span class="c1"># per-part rotation overrides (0 = global)</span>
         <span class="p">)</span>
 
     <span class="n">_nfp_nest</span><span class="o">.</span><span class="n">cancel_reset</span><span class="p">()</span>
@@ -2715,8 +2719,7 @@ part0 x q0, part1 x q1, ...).</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>compas_nest/nfp.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">226</span>
-<span class="normal">227</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">227</span>
 <span class="normal">228</span>
 <span class="normal">229</span>
 <span class="normal">230</span>
@@ -2742,7 +2745,8 @@ part0 x q0, part1 x q1, ...).</p>
 <span class="normal">250</span>
 <span class="normal">251</span>
 <span class="normal">252</span>
-<span class="normal">253</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geo</span><span class="p">,</span> <span class="n">sheets</span><span class="p">):</span>
+<span class="normal">253</span>
+<span class="normal">254</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geo</span><span class="p">,</span> <span class="n">sheets</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Run the nest, blocking until done (prints progress when ``verbose``).</span>
 
 <span class="sd">    Parameters</span>

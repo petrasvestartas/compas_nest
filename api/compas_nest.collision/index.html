@@ -2079,7 +2079,8 @@ returns the best layout found so far.</p>
 <span class="normal">214</span>
 <span class="normal">215</span>
 <span class="normal">216</span>
-<span class="normal">217</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">opennest_collision</span><span class="p">:</span>
+<span class="normal">217</span>
+<span class="normal">218</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">opennest_collision</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Nest polylines (with holes) into sheets (with holes) using the collision/relaxation engine.</span>
 
 <span class="sd">    Replicates the OpenNest ``OpenNestCollision`` Grasshopper component. The solve runs on a background</span>
@@ -2203,6 +2204,7 @@ returns the best layout found so far.</p>
                 <span class="n">sh</span><span class="p">[</span><span class="s2">&quot;hole_counts&quot;</span><span class="p">],</span> <span class="n">sh</span><span class="p">[</span><span class="s2">&quot;hole_vertex_counts&quot;</span><span class="p">],</span> <span class="n">sh</span><span class="p">[</span><span class="s2">&quot;hole_xy&quot;</span><span class="p">],</span>
                 <span class="n">parts</span><span class="p">[</span><span class="s2">&quot;hole_counts&quot;</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="s2">&quot;hole_vertex_counts&quot;</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="s2">&quot;hole_xy&quot;</span><span class="p">],</span>
                 <span class="n">params</span><span class="p">,</span>
+                <span class="n">parts</span><span class="p">[</span><span class="s2">&quot;rotations&quot;</span><span class="p">],</span>   <span class="c1"># per-part rotation overrides (0 = global)</span>
             <span class="p">)</span>
 
         <span class="n">_nest_physics</span><span class="o">.</span><span class="n">cancel_reset</span><span class="p">()</span>
@@ -2383,7 +2385,8 @@ the snapshot/result arrays).</p>
 <span class="normal">185</span>
 <span class="normal">186</span>
 <span class="normal">187</span>
-<span class="normal">188</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geo</span><span class="p">,</span> <span class="n">sheets</span><span class="p">):</span>
+<span class="normal">188</span>
+<span class="normal">189</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geo</span><span class="p">,</span> <span class="n">sheets</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Launch the solve on a background thread and return immediately.</span>
 
 <span class="sd">    Use this for live/animated UIs: poll :meth:`collision_solve.snapshot` while</span>
@@ -2418,6 +2421,7 @@ the snapshot/result arrays).</p>
             <span class="n">sh</span><span class="p">[</span><span class="s2">&quot;hole_counts&quot;</span><span class="p">],</span> <span class="n">sh</span><span class="p">[</span><span class="s2">&quot;hole_vertex_counts&quot;</span><span class="p">],</span> <span class="n">sh</span><span class="p">[</span><span class="s2">&quot;hole_xy&quot;</span><span class="p">],</span>
             <span class="n">parts</span><span class="p">[</span><span class="s2">&quot;hole_counts&quot;</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="s2">&quot;hole_vertex_counts&quot;</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="s2">&quot;hole_xy&quot;</span><span class="p">],</span>
             <span class="n">params</span><span class="p">,</span>
+            <span class="n">parts</span><span class="p">[</span><span class="s2">&quot;rotations&quot;</span><span class="p">],</span>   <span class="c1"># per-part rotation overrides (0 = global)</span>
         <span class="p">)</span>
 
     <span class="n">_nest_physics</span><span class="o">.</span><span class="n">cancel_reset</span><span class="p">()</span>
@@ -2516,8 +2520,7 @@ the snapshot/result arrays).</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>compas_nest/collision.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">190</span>
-<span class="normal">191</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">191</span>
 <span class="normal">192</span>
 <span class="normal">193</span>
 <span class="normal">194</span>
@@ -2543,7 +2546,8 @@ the snapshot/result arrays).</p>
 <span class="normal">214</span>
 <span class="normal">215</span>
 <span class="normal">216</span>
-<span class="normal">217</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geo</span><span class="p">,</span> <span class="n">sheets</span><span class="p">):</span>
+<span class="normal">217</span>
+<span class="normal">218</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geo</span><span class="p">,</span> <span class="n">sheets</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Run the nest, blocking until done (prints progress when ``verbose``).</span>
 
 <span class="sd">    Parameters</span>
