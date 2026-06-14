@@ -180,6 +180,7 @@ class opennest_collision:
                 sh["hole_counts"], sh["hole_vertex_counts"], sh["hole_xy"],
                 parts["hole_counts"], parts["hole_vertex_counts"], parts["hole_xy"],
                 params,
+                parts["rotations"],   # per-part rotation overrides (0 = global)
             )
 
         _nest_physics.cancel_reset()

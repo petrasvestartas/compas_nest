@@ -57,6 +57,7 @@ class nest_geo(Data):
                     "outline": part["outline"],
                     "holes": list(part.get("holes", [])),
                     "copies": int(part.get("copies", 1)),
+                    "rotations": int(part.get("rotations", 0)),
                     "attributes": list(part.get("attributes", [])),
                 }
                 for part in self.parts
@@ -67,7 +68,7 @@ class nest_geo(Data):
     def __from_data__(cls, data):
         return cls(parts=data["parts"])
 
-    def add_part(self, outline, holes=None, copies=1, attributes=None):
+    def add_part(self, outline, holes=None, copies=1, attributes=None, rotations=0):
         """Add a part.
 
         Parameters
@@ -80,6 +81,11 @@ class nest_geo(Data):
             Number of identical copies to nest.
         attributes : list[:class:`compas.geometry.Geometry`], optional
             Extra geometry carried along with the part through placement (opennest engine feature).
+        rotations : int, optional
+            Per-part rotation override. ``0`` (default) = use the solver's global rotation setting;
+            ``N`` = this part may only use ``N`` orientations (360/N degree steps); ``1`` = fixed
+            (no rotation, e.g. grain direction). Lets rectangular and freeform parts share one nest
+            with different rotation rules.
 
         Returns
         -------
@@ -91,6 +97,7 @@ class nest_geo(Data):
                 "outline": outline,
                 "holes": list(holes or []),
                 "copies": int(copies),
+                "rotations": max(0, int(rotations)),
                 "attributes": list(attributes or []),
             }
         )
@@ -118,12 +125,16 @@ class nest_geo(Data):
         hole_xy = []
         origin_index = []
         quantities = []
+        # Per-part rotation override, one entry per emitted part (per instance when copies are
+        # expanded, per part otherwise) — index-aligned with vertex_counts, i.e. part_count. 0 = global.
+        rotations = []
 
         for part_index, part in enumerate(self.parts):
             copies = max(1, int(part.get("copies", 1)))
             reps = copies if expand_copies else 1
             if not expand_copies:
                 quantities.append(copies)
+            rot = max(0, int(part.get("rotations", 0)))
             for _ in range(reps):
                 n, flat = _ring_xy(part["outline"])
                 vertex_counts.append(n)
@@ -135,6 +146,7 @@ class nest_geo(Data):
                     hole_vertex_counts.append(hn)
                     hole_xy.extend(hflat)
                 origin_index.append(part_index)
+                rotations.append(rot)
 
         result = {
             "vertex_counts": vertex_counts,
@@ -142,6 +154,7 @@ class nest_geo(Data):
             "hole_counts": hole_counts,
             "hole_vertex_counts": hole_vertex_counts,
             "hole_xy": hole_xy,
+            "rotations": rotations,
         }
         if expand_copies:
             result["origin_index"] = origin_index

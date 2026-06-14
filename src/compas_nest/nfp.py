@@ -216,6 +216,7 @@ class opennest:
                 sh["vertex_counts"], sh["xy"],
                 sh["hole_counts"], sh["hole_vertex_counts"], sh["hole_xy"],
                 params,
+                parts["rotations"],   # per-part rotation overrides (0 = global)
             )
 
         _nfp_nest.cancel_reset()
