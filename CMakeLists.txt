@@ -19,12 +19,14 @@ if(MSVC)
 endif()
 
 # ---------------------------------------------------------------------------
-# Vendored OpenNest C++ engine sources (git submodule -> external/nest).
-# No CGAL / Boost / Eigen download: both engines are self-contained.
+# OpenNest C++ engine sources — the SAME source tree as the OpenNest repo, vendored as a git submodule
+# (external/nest -> github.com/petrasvestartas/OpenNest). The engines live under src/ there, so compas_nest
+# always builds the exact engine OpenNest ships; updating = bumping the submodule. No CGAL/Boost/Eigen
+# download — both engines are self-contained.
 # ---------------------------------------------------------------------------
 set(NEST_DIR "${CMAKE_CURRENT_SOURCE_DIR}/external/nest")
-set(PHYSICS_DIR "${NEST_DIR}/nest_physics_cpp")
-set(NFP_DIR "${NEST_DIR}/opennest_cpp")
+set(PHYSICS_DIR "${NEST_DIR}/src/nest_physics_cpp")
+set(NFP_DIR "${NEST_DIR}/src/opennest_cpp")
 
 if(NOT EXISTS "${PHYSICS_DIR}/nest_physics_capi.cpp")
     message(FATAL_ERROR

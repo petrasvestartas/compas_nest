@@ -11,7 +11,7 @@ BLUE: Color = Color.from_hex("#0072B2")
 OUTPUT: Path = Path(__file__).parent.parent / "data" / "output" / "08_text.json"
 
 # 1. a frame to place/orient the text (origin = text origin, x-axis = reading direction)
-frame: Frame = Frame([0.0, 0.0, 0.0], [1.0, 0.0, 0.0], [0.0, 1.0, 0.0])
+frame: Frame = Frame([0.0, 0.0, 1.0], [1.0, 0.0, 1.0], [0.0, 1.0, 0.0])
 
 # 2. render text to single-stroke polylines (OpenNest XML font) on that frame, 10-unit cap height
 strokes: list = text_to_polylines("compas_nest\n0 1 2 3 4 5 6 7 8 9", height=10.0, font="regular", frame=frame)
