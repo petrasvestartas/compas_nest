@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../assets/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -31,7 +31,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -1644,7 +1644,7 @@ Unplaced instances have <code>sheet_id == -1</code>.</p>
 <span class="normal">179</span>
 <span class="normal">180</span>
 <span class="normal">181</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">nest_result</span><span class="p">(</span><span class="n">Data</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Placements produced by a nesting engine (a serializable COMPAS ``Data``).</span>
+<span class="w">    </span><span class="sd">"""Placements produced by a nesting engine (a serializable COMPAS ``Data``).</span>
 
 <span class="sd">    The placement contract (shared by both engines) is::</span>
 
@@ -1655,7 +1655,7 @@ Unplaced instances have <code>sheet_id == -1</code>.</p>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    placements : list[dict]</span>
-<span class="sd">        Each placement: ``{&quot;part_index&quot;: int, &quot;sheet_id&quot;: int, &quot;angle&quot;: float (rad), &quot;tx&quot;: float, &quot;ty&quot;: float}``.</span>
+<span class="sd">        Each placement: ``{"part_index": int, "sheet_id": int, "angle": float (rad), "tx": float, "ty": float}``.</span>
 <span class="sd">        Unplaced instances have ``sheet_id == -1``.</span>
 <span class="sd">    geo : :class:`compas_nest.nest_geo`</span>
 <span class="sd">        The parts that were nested (placements reference parts by ``part_index``).</span>
@@ -1666,7 +1666,7 @@ Unplaced instances have <code>sheet_id == -1</code>.</p>
 <span class="sd">    fitness : float, optional</span>
 <span class="sd">        Solver fitness (NFP engine only).</span>
 <span class="sd">    name : str, optional</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">placements</span><span class="p">,</span> <span class="n">geo</span><span class="p">,</span> <span class="n">sheet_origins</span><span class="p">,</span> <span class="n">n_sheets</span><span class="p">,</span> <span class="n">fitness</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
@@ -1679,42 +1679,42 @@ Unplaced instances have <code>sheet_id == -1</code>.</p>
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">__data__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">{</span>
-            <span class="s2">&quot;placements&quot;</span><span class="p">:</span> <span class="p">[</span><span class="nb">dict</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">placements</span><span class="p">],</span>
-            <span class="s2">&quot;geo&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">geo</span><span class="p">,</span>
-            <span class="s2">&quot;sheet_origins&quot;</span><span class="p">:</span> <span class="p">[[</span><span class="nb">float</span><span class="p">(</span><span class="n">o</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">o</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sheet_origins</span><span class="p">],</span>
-            <span class="s2">&quot;n_sheets&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_sheets</span><span class="p">),</span>
-            <span class="s2">&quot;fitness&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">fitness</span><span class="p">,</span>
+            <span class="s2">"placements"</span><span class="p">:</span> <span class="p">[</span><span class="nb">dict</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">placements</span><span class="p">],</span>
+            <span class="s2">"geo"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">geo</span><span class="p">,</span>
+            <span class="s2">"sheet_origins"</span><span class="p">:</span> <span class="p">[[</span><span class="nb">float</span><span class="p">(</span><span class="n">o</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">o</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sheet_origins</span><span class="p">],</span>
+            <span class="s2">"n_sheets"</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_sheets</span><span class="p">),</span>
+            <span class="s2">"fitness"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">fitness</span><span class="p">,</span>
         <span class="p">}</span>
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">__from_data__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
-            <span class="n">data</span><span class="p">[</span><span class="s2">&quot;placements&quot;</span><span class="p">],</span>
-            <span class="n">data</span><span class="p">[</span><span class="s2">&quot;geo&quot;</span><span class="p">],</span>
-            <span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">o</span><span class="p">)</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;sheet_origins&quot;</span><span class="p">]],</span>
-            <span class="n">data</span><span class="p">[</span><span class="s2">&quot;n_sheets&quot;</span><span class="p">],</span>
-            <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;fitness&quot;</span><span class="p">),</span>
+            <span class="n">data</span><span class="p">[</span><span class="s2">"placements"</span><span class="p">],</span>
+            <span class="n">data</span><span class="p">[</span><span class="s2">"geo"</span><span class="p">],</span>
+            <span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">o</span><span class="p">)</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s2">"sheet_origins"</span><span class="p">]],</span>
+            <span class="n">data</span><span class="p">[</span><span class="s2">"n_sheets"</span><span class="p">],</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"fitness"</span><span class="p">),</span>
         <span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">placed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;list[dict] : Placements that landed on a sheet (``sheet_id &gt;= 0``).&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">placements</span> <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;sheet_id&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">]</span>
+<span class="w">        </span><span class="sd">"""list[dict] : Placements that landed on a sheet (``sheet_id &gt;= 0``)."""</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">placements</span> <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="s2">"sheet_id"</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">]</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">unplaced</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;list[dict] : Placements that could not be placed.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">placements</span> <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;sheet_id&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span>
+<span class="w">        </span><span class="sd">"""list[dict] : Placements that could not be placed."""</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">placements</span> <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="s2">"sheet_id"</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">transformation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">placement</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the world :class:`compas.geometry.Transformation` for a placement.&quot;&quot;&quot;</span>
-        <span class="n">ox</span><span class="p">,</span> <span class="n">oy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sheet_origins</span><span class="p">[</span><span class="n">placement</span><span class="p">[</span><span class="s2">&quot;sheet_id&quot;</span><span class="p">]]</span>
-        <span class="n">R</span> <span class="o">=</span> <span class="n">Rotation</span><span class="o">.</span><span class="n">from_axis_and_angle</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="n">placement</span><span class="p">[</span><span class="s2">&quot;angle&quot;</span><span class="p">])</span>
-        <span class="n">T</span> <span class="o">=</span> <span class="n">Translation</span><span class="o">.</span><span class="n">from_vector</span><span class="p">([</span><span class="n">ox</span> <span class="o">+</span> <span class="n">placement</span><span class="p">[</span><span class="s2">&quot;tx&quot;</span><span class="p">],</span> <span class="n">oy</span> <span class="o">+</span> <span class="n">placement</span><span class="p">[</span><span class="s2">&quot;ty&quot;</span><span class="p">],</span> <span class="mf">0.0</span><span class="p">])</span>
+<span class="w">        </span><span class="sd">"""Return the world :class:`compas.geometry.Transformation` for a placement."""</span>
+        <span class="n">ox</span><span class="p">,</span> <span class="n">oy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sheet_origins</span><span class="p">[</span><span class="n">placement</span><span class="p">[</span><span class="s2">"sheet_id"</span><span class="p">]]</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">Rotation</span><span class="o">.</span><span class="n">from_axis_and_angle</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="n">placement</span><span class="p">[</span><span class="s2">"angle"</span><span class="p">])</span>
+        <span class="n">T</span> <span class="o">=</span> <span class="n">Translation</span><span class="o">.</span><span class="n">from_vector</span><span class="p">([</span><span class="n">ox</span> <span class="o">+</span> <span class="n">placement</span><span class="p">[</span><span class="s2">"tx"</span><span class="p">],</span> <span class="n">oy</span> <span class="o">+</span> <span class="n">placement</span><span class="p">[</span><span class="s2">"ty"</span><span class="p">],</span> <span class="mf">0.0</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">T</span> <span class="o">*</span> <span class="n">R</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">placed_polylines</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geo</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the placed geometry grouped per sheet.</span>
+<span class="w">        </span><span class="sd">"""Return the placed geometry grouped per sheet.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1727,29 +1727,29 @@ Unplaced instances have <code>sheet_id == -1</code>.</p>
 <span class="sd">        list[dict]</span>
 <span class="sd">            One entry per used sheet::</span>
 
-<span class="sd">                {&quot;sheet_id&quot;: int,</span>
-<span class="sd">                 &quot;parts&quot;: [{&quot;part_index&quot;: int, &quot;transformation&quot;: Transformation,</span>
-<span class="sd">                            &quot;outline&quot;: Polyline, &quot;holes&quot;: [Polyline, ...],</span>
-<span class="sd">                            &quot;attributes&quot;: [Geometry, ...]}, ...]}</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">                {"sheet_id": int,</span>
+<span class="sd">                 "parts": [{"part_index": int, "transformation": Transformation,</span>
+<span class="sd">                            "outline": Polyline, "holes": [Polyline, ...],</span>
+<span class="sd">                            "attributes": [Geometry, ...]}, ...]}</span>
+<span class="sd">        """</span>
         <span class="n">parts_source</span> <span class="o">=</span> <span class="p">(</span><span class="n">geo</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">geo</span><span class="p">)</span><span class="o">.</span><span class="n">parts</span>
         <span class="n">groups</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">placement</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">placed</span><span class="p">:</span>
-            <span class="n">sid</span> <span class="o">=</span> <span class="n">placement</span><span class="p">[</span><span class="s2">&quot;sheet_id&quot;</span><span class="p">]</span>
+            <span class="n">sid</span> <span class="o">=</span> <span class="n">placement</span><span class="p">[</span><span class="s2">"sheet_id"</span><span class="p">]</span>
             <span class="n">X</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transformation</span><span class="p">(</span><span class="n">placement</span><span class="p">)</span>
-            <span class="n">part</span> <span class="o">=</span> <span class="n">parts_source</span><span class="p">[</span><span class="n">placement</span><span class="p">[</span><span class="s2">&quot;part_index&quot;</span><span class="p">]]</span>
+            <span class="n">part</span> <span class="o">=</span> <span class="n">parts_source</span><span class="p">[</span><span class="n">placement</span><span class="p">[</span><span class="s2">"part_index"</span><span class="p">]]</span>
             <span class="n">entry</span> <span class="o">=</span> <span class="p">{</span>
-                <span class="s2">&quot;part_index&quot;</span><span class="p">:</span> <span class="n">placement</span><span class="p">[</span><span class="s2">&quot;part_index&quot;</span><span class="p">],</span>
-                <span class="s2">&quot;transformation&quot;</span><span class="p">:</span> <span class="n">X</span><span class="p">,</span>
-                <span class="s2">&quot;outline&quot;</span><span class="p">:</span> <span class="n">part</span><span class="p">[</span><span class="s2">&quot;outline&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">transformed</span><span class="p">(</span><span class="n">X</span><span class="p">),</span>
-                <span class="s2">&quot;holes&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">h</span><span class="o">.</span><span class="n">transformed</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">part</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;holes&quot;</span><span class="p">,</span> <span class="p">[])],</span>
-                <span class="s2">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">a</span><span class="o">.</span><span class="n">transformed</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">part</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;attributes&quot;</span><span class="p">,</span> <span class="p">[])],</span>
+                <span class="s2">"part_index"</span><span class="p">:</span> <span class="n">placement</span><span class="p">[</span><span class="s2">"part_index"</span><span class="p">],</span>
+                <span class="s2">"transformation"</span><span class="p">:</span> <span class="n">X</span><span class="p">,</span>
+                <span class="s2">"outline"</span><span class="p">:</span> <span class="n">part</span><span class="p">[</span><span class="s2">"outline"</span><span class="p">]</span><span class="o">.</span><span class="n">transformed</span><span class="p">(</span><span class="n">X</span><span class="p">),</span>
+                <span class="s2">"holes"</span><span class="p">:</span> <span class="p">[</span><span class="n">h</span><span class="o">.</span><span class="n">transformed</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">part</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"holes"</span><span class="p">,</span> <span class="p">[])],</span>
+                <span class="s2">"attributes"</span><span class="p">:</span> <span class="p">[</span><span class="n">a</span><span class="o">.</span><span class="n">transformed</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">part</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"attributes"</span><span class="p">,</span> <span class="p">[])],</span>
             <span class="p">}</span>
             <span class="n">groups</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">sid</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">[{</span><span class="s2">&quot;sheet_id&quot;</span><span class="p">:</span> <span class="n">sid</span><span class="p">,</span> <span class="s2">&quot;parts&quot;</span><span class="p">:</span> <span class="n">groups</span><span class="p">[</span><span class="n">sid</span><span class="p">]}</span> <span class="k">for</span> <span class="n">sid</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">groups</span><span class="p">)]</span>
+        <span class="k">return</span> <span class="p">[{</span><span class="s2">"sheet_id"</span><span class="p">:</span> <span class="n">sid</span><span class="p">,</span> <span class="s2">"parts"</span><span class="p">:</span> <span class="n">groups</span><span class="p">[</span><span class="n">sid</span><span class="p">]}</span> <span class="k">for</span> <span class="n">sid</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">groups</span><span class="p">)]</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">to_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepath</span><span class="p">,</span> <span class="n">geo</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Serialize the placed polylines (with holes) and transformations to COMPAS JSON.</span>
+<span class="w">        </span><span class="sd">"""Serialize the placed polylines (with holes) and transformations to COMPAS JSON.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1758,14 +1758,14 @@ Unplaced instances have <code>sheet_id == -1</code>.</p>
 <span class="sd">        geo : :class:`compas_nest.nest_geo`, optional</span>
 <span class="sd">            Apply the solved poses to this geometry instead of the nested one (see</span>
 <span class="sd">            :meth:`placed_polylines`).</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">fspath</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
         <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">filepath</span><span class="p">)),</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">json_dump</span><span class="p">({</span><span class="s2">&quot;n_sheets&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_sheets</span><span class="p">,</span> <span class="s2">&quot;sheets&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">placed_polylines</span><span class="p">(</span><span class="n">geo</span><span class="o">=</span><span class="n">geo</span><span class="p">)},</span> <span class="n">filepath</span><span class="p">)</span>
+        <span class="n">json_dump</span><span class="p">({</span><span class="s2">"n_sheets"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_sheets</span><span class="p">,</span> <span class="s2">"sheets"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">placed_polylines</span><span class="p">(</span><span class="n">geo</span><span class="o">=</span><span class="n">geo</span><span class="p">)},</span> <span class="n">filepath</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">filepath</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">to_obj</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepath</span><span class="p">,</span> <span class="n">geo</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Write the placed outlines and holes to a Wavefront OBJ as closed polyline loops.</span>
+<span class="w">        </span><span class="sd">"""Write the placed outlines and holes to a Wavefront OBJ as closed polyline loops.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1774,24 +1774,24 @@ Unplaced instances have <code>sheet_id == -1</code>.</p>
 <span class="sd">        geo : :class:`compas_nest.nest_geo`, optional</span>
 <span class="sd">            Apply the solved poses to this geometry instead of the nested one (see</span>
 <span class="sd">            :meth:`placed_polylines`).</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">fspath</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
         <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">filepath</span><span class="p">)),</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;# compas_nest placed geometry&quot;</span><span class="p">]</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"# compas_nest placed geometry"</span><span class="p">]</span>
         <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">placed_polylines</span><span class="p">(</span><span class="n">geo</span><span class="o">=</span><span class="n">geo</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">group</span><span class="p">[</span><span class="s2">&quot;parts&quot;</span><span class="p">]:</span>
-                <span class="k">for</span> <span class="n">ring</span> <span class="ow">in</span> <span class="p">[</span><span class="n">part</span><span class="p">[</span><span class="s2">&quot;outline&quot;</span><span class="p">],</span> <span class="o">*</span><span class="n">part</span><span class="p">[</span><span class="s2">&quot;holes&quot;</span><span class="p">]]:</span>
+            <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">group</span><span class="p">[</span><span class="s2">"parts"</span><span class="p">]:</span>
+                <span class="k">for</span> <span class="n">ring</span> <span class="ow">in</span> <span class="p">[</span><span class="n">part</span><span class="p">[</span><span class="s2">"outline"</span><span class="p">],</span> <span class="o">*</span><span class="n">part</span><span class="p">[</span><span class="s2">"holes"</span><span class="p">]]:</span>
                     <span class="n">pts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ring</span><span class="o">.</span><span class="n">points</span><span class="p">)</span>
                     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pts</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">pts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">pts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
                         <span class="n">pts</span> <span class="o">=</span> <span class="n">pts</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
                     <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pts</span><span class="p">:</span>
-                        <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;v </span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">])))</span>
+                        <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"v </span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">])))</span>
                     <span class="n">idx</span> <span class="o">=</span> <span class="p">[</span><span class="n">offset</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pts</span><span class="p">))]</span>
-                    <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;l &quot;</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">idx</span> <span class="o">+</span> <span class="p">[</span><span class="n">idx</span><span class="p">[</span><span class="mi">0</span><span class="p">]]))</span>  <span class="c1"># closed loop</span>
+                    <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"l "</span> <span class="o">+</span> <span class="s2">" "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">idx</span> <span class="o">+</span> <span class="p">[</span><span class="n">idx</span><span class="p">[</span><span class="mi">0</span><span class="p">]]))</span>  <span class="c1"># closed loop</span>
                     <span class="n">offset</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pts</span><span class="p">)</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">filepath</span>
 
     <span class="nd">@staticmethod</span>
@@ -1800,17 +1800,17 @@ Unplaced instances have <code>sheet_id == -1</code>.</p>
         <span class="k">for</span> <span class="n">part_index</span><span class="p">,</span> <span class="n">sheet_id</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">tx</span><span class="p">,</span> <span class="n">ty</span> <span class="ow">in</span> <span class="n">placements_raw</span><span class="p">:</span>
             <span class="n">placements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                 <span class="p">{</span>
-                    <span class="s2">&quot;part_index&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">part_index</span><span class="p">),</span>
-                    <span class="s2">&quot;sheet_id&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">sheet_id</span><span class="p">),</span>
-                    <span class="s2">&quot;angle&quot;</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span> <span class="k">if</span> <span class="n">degrees</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">angle</span><span class="p">),</span>
-                    <span class="s2">&quot;tx&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">tx</span><span class="p">),</span>
-                    <span class="s2">&quot;ty&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">ty</span><span class="p">),</span>
+                    <span class="s2">"part_index"</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">part_index</span><span class="p">),</span>
+                    <span class="s2">"sheet_id"</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">sheet_id</span><span class="p">),</span>
+                    <span class="s2">"angle"</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span> <span class="k">if</span> <span class="n">degrees</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">angle</span><span class="p">),</span>
+                    <span class="s2">"tx"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">tx</span><span class="p">),</span>
+                    <span class="s2">"ty"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">ty</span><span class="p">),</span>
                 <span class="p">}</span>
             <span class="p">)</span>
         <span class="k">return</span> <span class="n">nest_result</span><span class="p">(</span><span class="n">placements</span><span class="p">,</span> <span class="n">geo</span><span class="p">,</span> <span class="n">sheet_origins</span><span class="p">,</span> <span class="n">n_sheets</span><span class="p">,</span> <span class="n">fitness</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s2">&quot;nest_result(placed=</span><span class="si">{}</span><span class="s2">/</span><span class="si">{}</span><span class="s2">, n_sheets=</span><span class="si">{}</span><span class="s2">, fitness=</span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="k">return</span> <span class="s2">"nest_result(placed=</span><span class="si">{}</span><span class="s2">/</span><span class="si">{}</span><span class="s2">, n_sheets=</span><span class="si">{}</span><span class="s2">, fitness=</span><span class="si">{}</span><span class="s2">)"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
             <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">placed</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">placements</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_sheets</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fitness</span>
         <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -1895,10 +1895,10 @@ Unplaced instances have <code>sheet_id == -1</code>.</p>
 <span class="normal">78</span>
 <span class="normal">79</span>
 <span class="normal">80</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">transformation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">placement</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the world :class:`compas.geometry.Transformation` for a placement.&quot;&quot;&quot;</span>
-    <span class="n">ox</span><span class="p">,</span> <span class="n">oy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sheet_origins</span><span class="p">[</span><span class="n">placement</span><span class="p">[</span><span class="s2">&quot;sheet_id&quot;</span><span class="p">]]</span>
-    <span class="n">R</span> <span class="o">=</span> <span class="n">Rotation</span><span class="o">.</span><span class="n">from_axis_and_angle</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="n">placement</span><span class="p">[</span><span class="s2">&quot;angle&quot;</span><span class="p">])</span>
-    <span class="n">T</span> <span class="o">=</span> <span class="n">Translation</span><span class="o">.</span><span class="n">from_vector</span><span class="p">([</span><span class="n">ox</span> <span class="o">+</span> <span class="n">placement</span><span class="p">[</span><span class="s2">&quot;tx&quot;</span><span class="p">],</span> <span class="n">oy</span> <span class="o">+</span> <span class="n">placement</span><span class="p">[</span><span class="s2">&quot;ty&quot;</span><span class="p">],</span> <span class="mf">0.0</span><span class="p">])</span>
+<span class="w">    </span><span class="sd">"""Return the world :class:`compas.geometry.Transformation` for a placement."""</span>
+    <span class="n">ox</span><span class="p">,</span> <span class="n">oy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sheet_origins</span><span class="p">[</span><span class="n">placement</span><span class="p">[</span><span class="s2">"sheet_id"</span><span class="p">]]</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="n">Rotation</span><span class="o">.</span><span class="n">from_axis_and_angle</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="n">placement</span><span class="p">[</span><span class="s2">"angle"</span><span class="p">])</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">Translation</span><span class="o">.</span><span class="n">from_vector</span><span class="p">([</span><span class="n">ox</span> <span class="o">+</span> <span class="n">placement</span><span class="p">[</span><span class="s2">"tx"</span><span class="p">],</span> <span class="n">oy</span> <span class="o">+</span> <span class="n">placement</span><span class="p">[</span><span class="s2">"ty"</span><span class="p">],</span> <span class="mf">0.0</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">T</span> <span class="o">*</span> <span class="n">R</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1968,10 +1968,10 @@ render the <em>original</em> parts when the solve ran on offset (clearance) geom
             <td>
               <div class="doc-md-description">
                 <p>One entry per used sheet::</p>
-<div class="highlight"><pre><span></span><code>{&quot;sheet_id&quot;: int,
- &quot;parts&quot;: [{&quot;part_index&quot;: int, &quot;transformation&quot;: Transformation,
-            &quot;outline&quot;: Polyline, &quot;holes&quot;: [Polyline, ...],
-            &quot;attributes&quot;: [Geometry, ...]}, ...]}
+<div class="highlight"><pre><span></span><code>{"sheet_id": int,
+ "parts": [{"part_index": int, "transformation": Transformation,
+            "outline": Polyline, "holes": [Polyline, ...],
+            "attributes": [Geometry, ...]}, ...]}
 </code></pre></div>
               </div>
             </td>
@@ -2016,7 +2016,7 @@ render the <em>original</em> parts when the solve ran on offset (clearance) geom
 <span class="normal">113</span>
 <span class="normal">114</span>
 <span class="normal">115</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">placed_polylines</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geo</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the placed geometry grouped per sheet.</span>
+<span class="w">    </span><span class="sd">"""Return the placed geometry grouped per sheet.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -2029,26 +2029,26 @@ render the <em>original</em> parts when the solve ran on offset (clearance) geom
 <span class="sd">    list[dict]</span>
 <span class="sd">        One entry per used sheet::</span>
 
-<span class="sd">            {&quot;sheet_id&quot;: int,</span>
-<span class="sd">             &quot;parts&quot;: [{&quot;part_index&quot;: int, &quot;transformation&quot;: Transformation,</span>
-<span class="sd">                        &quot;outline&quot;: Polyline, &quot;holes&quot;: [Polyline, ...],</span>
-<span class="sd">                        &quot;attributes&quot;: [Geometry, ...]}, ...]}</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">            {"sheet_id": int,</span>
+<span class="sd">             "parts": [{"part_index": int, "transformation": Transformation,</span>
+<span class="sd">                        "outline": Polyline, "holes": [Polyline, ...],</span>
+<span class="sd">                        "attributes": [Geometry, ...]}, ...]}</span>
+<span class="sd">    """</span>
     <span class="n">parts_source</span> <span class="o">=</span> <span class="p">(</span><span class="n">geo</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">geo</span><span class="p">)</span><span class="o">.</span><span class="n">parts</span>
     <span class="n">groups</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">placement</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">placed</span><span class="p">:</span>
-        <span class="n">sid</span> <span class="o">=</span> <span class="n">placement</span><span class="p">[</span><span class="s2">&quot;sheet_id&quot;</span><span class="p">]</span>
+        <span class="n">sid</span> <span class="o">=</span> <span class="n">placement</span><span class="p">[</span><span class="s2">"sheet_id"</span><span class="p">]</span>
         <span class="n">X</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transformation</span><span class="p">(</span><span class="n">placement</span><span class="p">)</span>
-        <span class="n">part</span> <span class="o">=</span> <span class="n">parts_source</span><span class="p">[</span><span class="n">placement</span><span class="p">[</span><span class="s2">&quot;part_index&quot;</span><span class="p">]]</span>
+        <span class="n">part</span> <span class="o">=</span> <span class="n">parts_source</span><span class="p">[</span><span class="n">placement</span><span class="p">[</span><span class="s2">"part_index"</span><span class="p">]]</span>
         <span class="n">entry</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;part_index&quot;</span><span class="p">:</span> <span class="n">placement</span><span class="p">[</span><span class="s2">&quot;part_index&quot;</span><span class="p">],</span>
-            <span class="s2">&quot;transformation&quot;</span><span class="p">:</span> <span class="n">X</span><span class="p">,</span>
-            <span class="s2">&quot;outline&quot;</span><span class="p">:</span> <span class="n">part</span><span class="p">[</span><span class="s2">&quot;outline&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">transformed</span><span class="p">(</span><span class="n">X</span><span class="p">),</span>
-            <span class="s2">&quot;holes&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">h</span><span class="o">.</span><span class="n">transformed</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">part</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;holes&quot;</span><span class="p">,</span> <span class="p">[])],</span>
-            <span class="s2">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">a</span><span class="o">.</span><span class="n">transformed</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">part</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;attributes&quot;</span><span class="p">,</span> <span class="p">[])],</span>
+            <span class="s2">"part_index"</span><span class="p">:</span> <span class="n">placement</span><span class="p">[</span><span class="s2">"part_index"</span><span class="p">],</span>
+            <span class="s2">"transformation"</span><span class="p">:</span> <span class="n">X</span><span class="p">,</span>
+            <span class="s2">"outline"</span><span class="p">:</span> <span class="n">part</span><span class="p">[</span><span class="s2">"outline"</span><span class="p">]</span><span class="o">.</span><span class="n">transformed</span><span class="p">(</span><span class="n">X</span><span class="p">),</span>
+            <span class="s2">"holes"</span><span class="p">:</span> <span class="p">[</span><span class="n">h</span><span class="o">.</span><span class="n">transformed</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">part</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"holes"</span><span class="p">,</span> <span class="p">[])],</span>
+            <span class="s2">"attributes"</span><span class="p">:</span> <span class="p">[</span><span class="n">a</span><span class="o">.</span><span class="n">transformed</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">part</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"attributes"</span><span class="p">,</span> <span class="p">[])],</span>
         <span class="p">}</span>
         <span class="n">groups</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">sid</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">[{</span><span class="s2">&quot;sheet_id&quot;</span><span class="p">:</span> <span class="n">sid</span><span class="p">,</span> <span class="s2">&quot;parts&quot;</span><span class="p">:</span> <span class="n">groups</span><span class="p">[</span><span class="n">sid</span><span class="p">]}</span> <span class="k">for</span> <span class="n">sid</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">groups</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="p">[{</span><span class="s2">"sheet_id"</span><span class="p">:</span> <span class="n">sid</span><span class="p">,</span> <span class="s2">"parts"</span><span class="p">:</span> <span class="n">groups</span><span class="p">[</span><span class="n">sid</span><span class="p">]}</span> <span class="k">for</span> <span class="n">sid</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">groups</span><span class="p">)]</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -2134,7 +2134,7 @@ render the <em>original</em> parts when the solve ran on offset (clearance) geom
 <span class="normal">129</span>
 <span class="normal">130</span>
 <span class="normal">131</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">to_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepath</span><span class="p">,</span> <span class="n">geo</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Serialize the placed polylines (with holes) and transformations to COMPAS JSON.</span>
+<span class="w">    </span><span class="sd">"""Serialize the placed polylines (with holes) and transformations to COMPAS JSON.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -2143,10 +2143,10 @@ render the <em>original</em> parts when the solve ran on offset (clearance) geom
 <span class="sd">    geo : :class:`compas_nest.nest_geo`, optional</span>
 <span class="sd">        Apply the solved poses to this geometry instead of the nested one (see</span>
 <span class="sd">        :meth:`placed_polylines`).</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">fspath</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
     <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">filepath</span><span class="p">)),</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">json_dump</span><span class="p">({</span><span class="s2">&quot;n_sheets&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_sheets</span><span class="p">,</span> <span class="s2">&quot;sheets&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">placed_polylines</span><span class="p">(</span><span class="n">geo</span><span class="o">=</span><span class="n">geo</span><span class="p">)},</span> <span class="n">filepath</span><span class="p">)</span>
+    <span class="n">json_dump</span><span class="p">({</span><span class="s2">"n_sheets"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_sheets</span><span class="p">,</span> <span class="s2">"sheets"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">placed_polylines</span><span class="p">(</span><span class="n">geo</span><span class="o">=</span><span class="n">geo</span><span class="p">)},</span> <span class="n">filepath</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">filepath</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -2247,7 +2247,7 @@ render the <em>original</em> parts when the solve ran on offset (clearance) geom
 <span class="normal">159</span>
 <span class="normal">160</span>
 <span class="normal">161</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">to_obj</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepath</span><span class="p">,</span> <span class="n">geo</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Write the placed outlines and holes to a Wavefront OBJ as closed polyline loops.</span>
+<span class="w">    </span><span class="sd">"""Write the placed outlines and holes to a Wavefront OBJ as closed polyline loops.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -2256,24 +2256,24 @@ render the <em>original</em> parts when the solve ran on offset (clearance) geom
 <span class="sd">    geo : :class:`compas_nest.nest_geo`, optional</span>
 <span class="sd">        Apply the solved poses to this geometry instead of the nested one (see</span>
 <span class="sd">        :meth:`placed_polylines`).</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">fspath</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
     <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">filepath</span><span class="p">)),</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;# compas_nest placed geometry&quot;</span><span class="p">]</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"# compas_nest placed geometry"</span><span class="p">]</span>
     <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">placed_polylines</span><span class="p">(</span><span class="n">geo</span><span class="o">=</span><span class="n">geo</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">group</span><span class="p">[</span><span class="s2">&quot;parts&quot;</span><span class="p">]:</span>
-            <span class="k">for</span> <span class="n">ring</span> <span class="ow">in</span> <span class="p">[</span><span class="n">part</span><span class="p">[</span><span class="s2">&quot;outline&quot;</span><span class="p">],</span> <span class="o">*</span><span class="n">part</span><span class="p">[</span><span class="s2">&quot;holes&quot;</span><span class="p">]]:</span>
+        <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">group</span><span class="p">[</span><span class="s2">"parts"</span><span class="p">]:</span>
+            <span class="k">for</span> <span class="n">ring</span> <span class="ow">in</span> <span class="p">[</span><span class="n">part</span><span class="p">[</span><span class="s2">"outline"</span><span class="p">],</span> <span class="o">*</span><span class="n">part</span><span class="p">[</span><span class="s2">"holes"</span><span class="p">]]:</span>
                 <span class="n">pts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ring</span><span class="o">.</span><span class="n">points</span><span class="p">)</span>
                 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pts</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">pts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">pts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
                     <span class="n">pts</span> <span class="o">=</span> <span class="n">pts</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
                 <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pts</span><span class="p">:</span>
-                    <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;v </span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">])))</span>
+                    <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"v </span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">])))</span>
                 <span class="n">idx</span> <span class="o">=</span> <span class="p">[</span><span class="n">offset</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pts</span><span class="p">))]</span>
-                <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;l &quot;</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">idx</span> <span class="o">+</span> <span class="p">[</span><span class="n">idx</span><span class="p">[</span><span class="mi">0</span><span class="p">]]))</span>  <span class="c1"># closed loop</span>
+                <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"l "</span> <span class="o">+</span> <span class="s2">" "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">idx</span> <span class="o">+</span> <span class="p">[</span><span class="n">idx</span><span class="p">[</span><span class="mi">0</span><span class="p">]]))</span>  <span class="c1"># closed loop</span>
                 <span class="n">offset</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pts</span><span class="p">)</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">filepath</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -2355,7 +2355,7 @@ render the <em>original</em> parts when the solve ran on offset (clearance) geom
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "navigation.sections", "navigation.indexes", "navigation.top", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../assets/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -31,7 +31,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -1460,12 +1460,12 @@ final result.</p>
 <span class="normal">54</span>
 <span class="normal">55</span>
 <span class="normal">56</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">collision_solve</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Handle to a collision solve running on a background thread.</span>
+<span class="w">    </span><span class="sd">"""Handle to a collision solve running on a background thread.</span>
 
 <span class="sd">    Returned by :meth:`opennest_collision.start`. Poll :meth:`snapshot` for the current best layout</span>
 <span class="sd">    (e.g. from a viewer animation callback), check :meth:`is_running`, and call :meth:`wait` for the</span>
 <span class="sd">    final result.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geo</span><span class="p">,</span> <span class="n">sheet_origins</span><span class="p">,</span> <span class="n">origin_index</span><span class="p">,</span> <span class="n">n_instances</span><span class="p">,</span> <span class="n">thread</span><span class="p">,</span> <span class="n">box</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">geo</span> <span class="o">=</span> <span class="n">geo</span>
@@ -1476,15 +1476,15 @@ final result.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">_box</span> <span class="o">=</span> <span class="n">box</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">progress</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;int : Relaxation rounds completed so far.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""int : Relaxation rounds completed so far."""</span>
         <span class="k">return</span> <span class="n">_nest_physics</span><span class="o">.</span><span class="n">progress</span><span class="p">()</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">is_running</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;bool : Whether the solve thread is still running.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""bool : Whether the solve thread is still running."""</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_thread</span><span class="o">.</span><span class="n">is_alive</span><span class="p">()</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">cancel</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Ask the solve to stop at the next round and return its best layout so far.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Ask the solve to stop at the next round and return its best layout so far."""</span>
         <span class="n">_nest_physics</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tx</span><span class="p">,</span> <span class="n">ty</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">sheet_id</span><span class="p">,</span> <span class="n">n_sheets</span><span class="p">):</span>
@@ -1495,14 +1495,14 @@ final result.</p>
         <span class="k">return</span> <span class="n">nest_result</span><span class="o">.</span><span class="n">_from_engine</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">geo</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sheet_origins</span><span class="p">,</span> <span class="n">n_sheets</span><span class="p">,</span> <span class="n">degrees</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">snapshot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Build a :class:`compas_nest.nest_result` from the current mid-solve layout.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Build a :class:`compas_nest.nest_result` from the current mid-solve layout."""</span>
         <span class="n">_placed</span><span class="p">,</span> <span class="n">tx</span><span class="p">,</span> <span class="n">ty</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">sheet_id</span><span class="p">,</span> <span class="n">n_sheets</span> <span class="o">=</span> <span class="n">_nest_physics</span><span class="o">.</span><span class="n">poll_layout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_instances</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span> <span class="n">ty</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">sheet_id</span><span class="p">,</span> <span class="n">n_sheets</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">wait</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Block until the solve finishes and return the final :class:`compas_nest.nest_result`.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Block until the solve finishes and return the final :class:`compas_nest.nest_result`."""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_thread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-        <span class="n">_rc</span><span class="p">,</span> <span class="n">tx</span><span class="p">,</span> <span class="n">ty</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">sheet_id</span><span class="p">,</span> <span class="n">n_sheets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_box</span><span class="p">[</span><span class="s2">&quot;ret&quot;</span><span class="p">]</span>
+        <span class="n">_rc</span><span class="p">,</span> <span class="n">tx</span><span class="p">,</span> <span class="n">ty</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">sheet_id</span><span class="p">,</span> <span class="n">n_sheets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_box</span><span class="p">[</span><span class="s2">"ret"</span><span class="p">]</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span> <span class="n">ty</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">sheet_id</span><span class="p">,</span> <span class="n">n_sheets</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
               </details>
@@ -1539,7 +1539,7 @@ final result.</p>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">28</span>
 <span class="normal">29</span>
 <span class="normal">30</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">progress</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;int : Relaxation rounds completed so far.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""int : Relaxation rounds completed so far."""</span>
     <span class="k">return</span> <span class="n">_nest_physics</span><span class="o">.</span><span class="n">progress</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1566,7 +1566,7 @@ final result.</p>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">32</span>
 <span class="normal">33</span>
 <span class="normal">34</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">is_running</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;bool : Whether the solve thread is still running.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""bool : Whether the solve thread is still running."""</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_thread</span><span class="o">.</span><span class="n">is_alive</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1593,7 +1593,7 @@ final result.</p>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">36</span>
 <span class="normal">37</span>
 <span class="normal">38</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">cancel</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Ask the solve to stop at the next round and return its best layout so far.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Ask the solve to stop at the next round and return its best layout so far."""</span>
     <span class="n">_nest_physics</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1621,7 +1621,7 @@ final result.</p>
 <span class="normal">48</span>
 <span class="normal">49</span>
 <span class="normal">50</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">snapshot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Build a :class:`compas_nest.nest_result` from the current mid-solve layout.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Build a :class:`compas_nest.nest_result` from the current mid-solve layout."""</span>
     <span class="n">_placed</span><span class="p">,</span> <span class="n">tx</span><span class="p">,</span> <span class="n">ty</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">sheet_id</span><span class="p">,</span> <span class="n">n_sheets</span> <span class="o">=</span> <span class="n">_nest_physics</span><span class="o">.</span><span class="n">poll_layout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_instances</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span> <span class="n">ty</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">sheet_id</span><span class="p">,</span> <span class="n">n_sheets</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -1651,9 +1651,9 @@ final result.</p>
 <span class="normal">54</span>
 <span class="normal">55</span>
 <span class="normal">56</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">wait</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Block until the solve finishes and return the final :class:`compas_nest.nest_result`.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Block until the solve finishes and return the final :class:`compas_nest.nest_result`."""</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_thread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-    <span class="n">_rc</span><span class="p">,</span> <span class="n">tx</span><span class="p">,</span> <span class="n">ty</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">sheet_id</span><span class="p">,</span> <span class="n">n_sheets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_box</span><span class="p">[</span><span class="s2">&quot;ret&quot;</span><span class="p">]</span>
+    <span class="n">_rc</span><span class="p">,</span> <span class="n">tx</span><span class="p">,</span> <span class="n">ty</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">sheet_id</span><span class="p">,</span> <span class="n">n_sheets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_box</span><span class="p">[</span><span class="s2">"ret"</span><span class="p">]</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span> <span class="n">ty</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">sheet_id</span><span class="p">,</span> <span class="n">n_sheets</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -2081,7 +2081,7 @@ returns the best layout found so far.</p>
 <span class="normal">216</span>
 <span class="normal">217</span>
 <span class="normal">218</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">opennest_collision</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Nest polylines (with holes) into sheets (with holes) using the collision/relaxation engine.</span>
+<span class="w">    </span><span class="sd">"""Nest polylines (with holes) into sheets (with holes) using the collision/relaxation engine.</span>
 
 <span class="sd">    Replicates the OpenNest ``OpenNestCollision`` Grasshopper component. The solve runs on a background</span>
 <span class="sd">    thread while the calling thread prints live progress (relaxation rounds); ``Ctrl-C`` cancels and</span>
@@ -2100,7 +2100,7 @@ returns the best layout found so far.</p>
 <span class="sd">    n_starts : int, optional</span>
 <span class="sd">        Multi-start: run this many seeds and keep the densest.</span>
 <span class="sd">    part_holes_mode : int, optional</span>
-<span class="sd">        0 = ignore part holes, 1 = nest smaller parts into larger parts&#39; holes.</span>
+<span class="sd">        0 = ignore part holes, 1 = nest smaller parts into larger parts' holes.</span>
 <span class="sd">    pole_max : int, optional</span>
 <span class="sd">        Inscribed circles per part for collision tests (more = accurate, fewer = faster).</span>
 <span class="sd">    final_compact : int, optional</span>
@@ -2115,7 +2115,7 @@ returns the best layout found so far.</p>
 <span class="sd">        Geometry simplification tolerance (&lt;= 0 keeps the lean default).</span>
 <span class="sd">    verbose : bool, optional</span>
 <span class="sd">        Print progress to the terminal.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -2170,7 +2170,7 @@ returns the best layout found so far.</p>
         <span class="k">return</span> <span class="n">p</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geo</span><span class="p">,</span> <span class="n">sheets</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Launch the solve on a background thread and return immediately.</span>
+<span class="w">        </span><span class="sd">"""Launch the solve on a background thread and return immediately.</span>
 
 <span class="sd">        Use this for live/animated UIs: poll :meth:`collision_solve.snapshot` while</span>
 <span class="sd">        :meth:`collision_solve.is_running` is true, then call :meth:`collision_solve.wait`.</span>
@@ -2186,7 +2186,7 @@ returns the best layout found so far.</p>
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        :class:`collision_solve`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">parts</span> <span class="o">=</span> <span class="n">geo</span><span class="o">.</span><span class="n">_flatten_parts</span><span class="p">(</span><span class="n">expand_copies</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">sh</span> <span class="o">=</span> <span class="n">sheets</span><span class="o">.</span><span class="n">to_arrays</span><span class="p">()</span>
         <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_params</span><span class="p">()</span>
@@ -2198,22 +2198,22 @@ returns the best layout found so far.</p>
         <span class="n">box</span> <span class="o">=</span> <span class="p">{}</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">work</span><span class="p">():</span>
-            <span class="n">box</span><span class="p">[</span><span class="s2">&quot;ret&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_nest_physics</span><span class="o">.</span><span class="n">nest</span><span class="p">(</span>
-                <span class="n">parts</span><span class="p">[</span><span class="s2">&quot;vertex_counts&quot;</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="s2">&quot;xy&quot;</span><span class="p">],</span>
-                <span class="n">sh</span><span class="p">[</span><span class="s2">&quot;vertex_counts&quot;</span><span class="p">],</span> <span class="n">sh</span><span class="p">[</span><span class="s2">&quot;xy&quot;</span><span class="p">],</span>
-                <span class="n">sh</span><span class="p">[</span><span class="s2">&quot;hole_counts&quot;</span><span class="p">],</span> <span class="n">sh</span><span class="p">[</span><span class="s2">&quot;hole_vertex_counts&quot;</span><span class="p">],</span> <span class="n">sh</span><span class="p">[</span><span class="s2">&quot;hole_xy&quot;</span><span class="p">],</span>
-                <span class="n">parts</span><span class="p">[</span><span class="s2">&quot;hole_counts&quot;</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="s2">&quot;hole_vertex_counts&quot;</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="s2">&quot;hole_xy&quot;</span><span class="p">],</span>
+            <span class="n">box</span><span class="p">[</span><span class="s2">"ret"</span><span class="p">]</span> <span class="o">=</span> <span class="n">_nest_physics</span><span class="o">.</span><span class="n">nest</span><span class="p">(</span>
+                <span class="n">parts</span><span class="p">[</span><span class="s2">"vertex_counts"</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="s2">"xy"</span><span class="p">],</span>
+                <span class="n">sh</span><span class="p">[</span><span class="s2">"vertex_counts"</span><span class="p">],</span> <span class="n">sh</span><span class="p">[</span><span class="s2">"xy"</span><span class="p">],</span>
+                <span class="n">sh</span><span class="p">[</span><span class="s2">"hole_counts"</span><span class="p">],</span> <span class="n">sh</span><span class="p">[</span><span class="s2">"hole_vertex_counts"</span><span class="p">],</span> <span class="n">sh</span><span class="p">[</span><span class="s2">"hole_xy"</span><span class="p">],</span>
+                <span class="n">parts</span><span class="p">[</span><span class="s2">"hole_counts"</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="s2">"hole_vertex_counts"</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="s2">"hole_xy"</span><span class="p">],</span>
                 <span class="n">params</span><span class="p">,</span>
-                <span class="n">parts</span><span class="p">[</span><span class="s2">&quot;rotations&quot;</span><span class="p">],</span>   <span class="c1"># per-part rotation overrides (0 = global)</span>
+                <span class="n">parts</span><span class="p">[</span><span class="s2">"rotations"</span><span class="p">],</span>   <span class="c1"># per-part rotation overrides (0 = global)</span>
             <span class="p">)</span>
 
         <span class="n">_nest_physics</span><span class="o">.</span><span class="n">cancel_reset</span><span class="p">()</span>
         <span class="n">thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">work</span><span class="p">,</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">collision_solve</span><span class="p">(</span><span class="n">geo</span><span class="p">,</span> <span class="n">sh</span><span class="p">[</span><span class="s2">&quot;origins&quot;</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="s2">&quot;origin_index&quot;</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="s2">&quot;vertex_counts&quot;</span><span class="p">]),</span> <span class="n">thread</span><span class="p">,</span> <span class="n">box</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">collision_solve</span><span class="p">(</span><span class="n">geo</span><span class="p">,</span> <span class="n">sh</span><span class="p">[</span><span class="s2">"origins"</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="s2">"origin_index"</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="s2">"vertex_counts"</span><span class="p">]),</span> <span class="n">thread</span><span class="p">,</span> <span class="n">box</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geo</span><span class="p">,</span> <span class="n">sheets</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Run the nest, blocking until done (prints progress when ``verbose``).</span>
+<span class="w">        </span><span class="sd">"""Run the nest, blocking until done (prints progress when ``verbose``).</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -2225,20 +2225,20 @@ returns the best layout found so far.</p>
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        :class:`compas_nest.nest_result`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">handle</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">geo</span><span class="p">,</span> <span class="n">sheets</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">while</span> <span class="n">handle</span><span class="o">.</span><span class="n">is_running</span><span class="p">():</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\r</span><span class="s2">[opennest_collision] </span><span class="si">{}</span><span class="s2"> / ~</span><span class="si">{}</span><span class="s2"> rounds  (Ctrl-C = stop)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">handle</span><span class="o">.</span><span class="n">progress</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterations</span><span class="p">))</span>
+                    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">"</span><span class="se">\r</span><span class="s2">[opennest_collision] </span><span class="si">{}</span><span class="s2"> / ~</span><span class="si">{}</span><span class="s2"> rounds  (Ctrl-C = stop)"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">handle</span><span class="o">.</span><span class="n">progress</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterations</span><span class="p">))</span>
                     <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
                 <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
             <span class="n">handle</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">handle</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[opennest_collision] placed </span><span class="si">{}</span><span class="s2">/</span><span class="si">{}</span><span class="s2"> instances on </span><span class="si">{}</span><span class="s2"> sheet(s).&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">placed</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">placements</span><span class="p">),</span> <span class="n">result</span><span class="o">.</span><span class="n">n_sheets</span><span class="p">))</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"[opennest_collision] placed </span><span class="si">{}</span><span class="s2">/</span><span class="si">{}</span><span class="s2"> instances on </span><span class="si">{}</span><span class="s2"> sheet(s)."</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">placed</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">placements</span><span class="p">),</span> <span class="n">result</span><span class="o">.</span><span class="n">n_sheets</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">result</span>
 </code></pre></div></td></tr></table></div>
               </details>
@@ -2387,7 +2387,7 @@ the snapshot/result arrays).</p>
 <span class="normal">187</span>
 <span class="normal">188</span>
 <span class="normal">189</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geo</span><span class="p">,</span> <span class="n">sheets</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Launch the solve on a background thread and return immediately.</span>
+<span class="w">    </span><span class="sd">"""Launch the solve on a background thread and return immediately.</span>
 
 <span class="sd">    Use this for live/animated UIs: poll :meth:`collision_solve.snapshot` while</span>
 <span class="sd">    :meth:`collision_solve.is_running` is true, then call :meth:`collision_solve.wait`.</span>
@@ -2403,7 +2403,7 @@ the snapshot/result arrays).</p>
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    :class:`collision_solve`</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">parts</span> <span class="o">=</span> <span class="n">geo</span><span class="o">.</span><span class="n">_flatten_parts</span><span class="p">(</span><span class="n">expand_copies</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">sh</span> <span class="o">=</span> <span class="n">sheets</span><span class="o">.</span><span class="n">to_arrays</span><span class="p">()</span>
     <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_params</span><span class="p">()</span>
@@ -2415,19 +2415,19 @@ the snapshot/result arrays).</p>
     <span class="n">box</span> <span class="o">=</span> <span class="p">{}</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">work</span><span class="p">():</span>
-        <span class="n">box</span><span class="p">[</span><span class="s2">&quot;ret&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_nest_physics</span><span class="o">.</span><span class="n">nest</span><span class="p">(</span>
-            <span class="n">parts</span><span class="p">[</span><span class="s2">&quot;vertex_counts&quot;</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="s2">&quot;xy&quot;</span><span class="p">],</span>
-            <span class="n">sh</span><span class="p">[</span><span class="s2">&quot;vertex_counts&quot;</span><span class="p">],</span> <span class="n">sh</span><span class="p">[</span><span class="s2">&quot;xy&quot;</span><span class="p">],</span>
-            <span class="n">sh</span><span class="p">[</span><span class="s2">&quot;hole_counts&quot;</span><span class="p">],</span> <span class="n">sh</span><span class="p">[</span><span class="s2">&quot;hole_vertex_counts&quot;</span><span class="p">],</span> <span class="n">sh</span><span class="p">[</span><span class="s2">&quot;hole_xy&quot;</span><span class="p">],</span>
-            <span class="n">parts</span><span class="p">[</span><span class="s2">&quot;hole_counts&quot;</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="s2">&quot;hole_vertex_counts&quot;</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="s2">&quot;hole_xy&quot;</span><span class="p">],</span>
+        <span class="n">box</span><span class="p">[</span><span class="s2">"ret"</span><span class="p">]</span> <span class="o">=</span> <span class="n">_nest_physics</span><span class="o">.</span><span class="n">nest</span><span class="p">(</span>
+            <span class="n">parts</span><span class="p">[</span><span class="s2">"vertex_counts"</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="s2">"xy"</span><span class="p">],</span>
+            <span class="n">sh</span><span class="p">[</span><span class="s2">"vertex_counts"</span><span class="p">],</span> <span class="n">sh</span><span class="p">[</span><span class="s2">"xy"</span><span class="p">],</span>
+            <span class="n">sh</span><span class="p">[</span><span class="s2">"hole_counts"</span><span class="p">],</span> <span class="n">sh</span><span class="p">[</span><span class="s2">"hole_vertex_counts"</span><span class="p">],</span> <span class="n">sh</span><span class="p">[</span><span class="s2">"hole_xy"</span><span class="p">],</span>
+            <span class="n">parts</span><span class="p">[</span><span class="s2">"hole_counts"</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="s2">"hole_vertex_counts"</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="s2">"hole_xy"</span><span class="p">],</span>
             <span class="n">params</span><span class="p">,</span>
-            <span class="n">parts</span><span class="p">[</span><span class="s2">&quot;rotations&quot;</span><span class="p">],</span>   <span class="c1"># per-part rotation overrides (0 = global)</span>
+            <span class="n">parts</span><span class="p">[</span><span class="s2">"rotations"</span><span class="p">],</span>   <span class="c1"># per-part rotation overrides (0 = global)</span>
         <span class="p">)</span>
 
     <span class="n">_nest_physics</span><span class="o">.</span><span class="n">cancel_reset</span><span class="p">()</span>
     <span class="n">thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">work</span><span class="p">,</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">collision_solve</span><span class="p">(</span><span class="n">geo</span><span class="p">,</span> <span class="n">sh</span><span class="p">[</span><span class="s2">&quot;origins&quot;</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="s2">&quot;origin_index&quot;</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="s2">&quot;vertex_counts&quot;</span><span class="p">]),</span> <span class="n">thread</span><span class="p">,</span> <span class="n">box</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">collision_solve</span><span class="p">(</span><span class="n">geo</span><span class="p">,</span> <span class="n">sh</span><span class="p">[</span><span class="s2">"origins"</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="s2">"origin_index"</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="s2">"vertex_counts"</span><span class="p">]),</span> <span class="n">thread</span><span class="p">,</span> <span class="n">box</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -2548,7 +2548,7 @@ the snapshot/result arrays).</p>
 <span class="normal">216</span>
 <span class="normal">217</span>
 <span class="normal">218</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geo</span><span class="p">,</span> <span class="n">sheets</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run the nest, blocking until done (prints progress when ``verbose``).</span>
+<span class="w">    </span><span class="sd">"""Run the nest, blocking until done (prints progress when ``verbose``).</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -2560,20 +2560,20 @@ the snapshot/result arrays).</p>
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    :class:`compas_nest.nest_result`</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">handle</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">geo</span><span class="p">,</span> <span class="n">sheets</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="k">while</span> <span class="n">handle</span><span class="o">.</span><span class="n">is_running</span><span class="p">():</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\r</span><span class="s2">[opennest_collision] </span><span class="si">{}</span><span class="s2"> / ~</span><span class="si">{}</span><span class="s2"> rounds  (Ctrl-C = stop)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">handle</span><span class="o">.</span><span class="n">progress</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterations</span><span class="p">))</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">"</span><span class="se">\r</span><span class="s2">[opennest_collision] </span><span class="si">{}</span><span class="s2"> / ~</span><span class="si">{}</span><span class="s2"> rounds  (Ctrl-C = stop)"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">handle</span><span class="o">.</span><span class="n">progress</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterations</span><span class="p">))</span>
                 <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
             <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
         <span class="n">handle</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">handle</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[opennest_collision] placed </span><span class="si">{}</span><span class="s2">/</span><span class="si">{}</span><span class="s2"> instances on </span><span class="si">{}</span><span class="s2"> sheet(s).&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">placed</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">placements</span><span class="p">),</span> <span class="n">result</span><span class="o">.</span><span class="n">n_sheets</span><span class="p">))</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"[opennest_collision] placed </span><span class="si">{}</span><span class="s2">/</span><span class="si">{}</span><span class="s2"> instances on </span><span class="si">{}</span><span class="s2"> sheet(s)."</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">placed</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">placements</span><span class="p">),</span> <span class="n">result</span><span class="o">.</span><span class="n">n_sheets</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">result</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -2655,7 +2655,7 @@ the snapshot/result arrays).</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "navigation.sections", "navigation.indexes", "navigation.top", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../assets/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -31,7 +31,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -1576,21 +1576,21 @@
 <span class="normal">161</span>
 <span class="normal">162</span>
 <span class="normal">163</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">nest_geo</span><span class="p">(</span><span class="n">Data</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Container for the parts (polylines with optional holes) to nest.</span>
+<span class="w">    </span><span class="sd">"""Container for the parts (polylines with optional holes) to nest.</span>
 
 <span class="sd">    Replicates the role of the OpenNest C# ``nest_geo`` class.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    parts : list[dict], optional</span>
-<span class="sd">        Each part is a dict ``{&quot;outline&quot;: Polyline, &quot;holes&quot;: [Polyline, ...], &quot;copies&quot;: int, &quot;attributes&quot;: [Geometry, ...]}``.</span>
+<span class="sd">        Each part is a dict ``{"outline": Polyline, "holes": [Polyline, ...], "copies": int, "attributes": [Geometry, ...]}``.</span>
 <span class="sd">    name : str, optional</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    parts : list[dict]</span>
 <span class="sd">        The parts. Index into this list is the *part index* returned by the engines.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parts</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
@@ -1599,13 +1599,13 @@
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">__data__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">{</span>
-            <span class="s2">&quot;parts&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">"parts"</span><span class="p">:</span> <span class="p">[</span>
                 <span class="p">{</span>
-                    <span class="s2">&quot;outline&quot;</span><span class="p">:</span> <span class="n">part</span><span class="p">[</span><span class="s2">&quot;outline&quot;</span><span class="p">],</span>
-                    <span class="s2">&quot;holes&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">part</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;holes&quot;</span><span class="p">,</span> <span class="p">[])),</span>
-                    <span class="s2">&quot;copies&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">part</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;copies&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span>
-                    <span class="s2">&quot;rotations&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">part</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;rotations&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
-                    <span class="s2">&quot;attributes&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">part</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;attributes&quot;</span><span class="p">,</span> <span class="p">[])),</span>
+                    <span class="s2">"outline"</span><span class="p">:</span> <span class="n">part</span><span class="p">[</span><span class="s2">"outline"</span><span class="p">],</span>
+                    <span class="s2">"holes"</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">part</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"holes"</span><span class="p">,</span> <span class="p">[])),</span>
+                    <span class="s2">"copies"</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">part</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"copies"</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span>
+                    <span class="s2">"rotations"</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">part</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"rotations"</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+                    <span class="s2">"attributes"</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">part</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"attributes"</span><span class="p">,</span> <span class="p">[])),</span>
                 <span class="p">}</span>
                 <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parts</span>
             <span class="p">]</span>
@@ -1613,10 +1613,10 @@
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">__from_data__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">parts</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;parts&quot;</span><span class="p">])</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">parts</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">"parts"</span><span class="p">])</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">add_part</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outline</span><span class="p">,</span> <span class="n">holes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">copies</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">attributes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rotations</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a part.</span>
+<span class="w">        </span><span class="sd">"""Add a part.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1629,7 +1629,7 @@
 <span class="sd">        attributes : list[:class:`compas.geometry.Geometry`], optional</span>
 <span class="sd">            Extra geometry carried along with the part through placement (opennest engine feature).</span>
 <span class="sd">        rotations : int, optional</span>
-<span class="sd">            Per-part rotation override. ``0`` (default) = use the solver&#39;s global rotation setting;</span>
+<span class="sd">            Per-part rotation override. ``0`` (default) = use the solver's global rotation setting;</span>
 <span class="sd">            ``N`` = this part may only use ``N`` orientations (360/N degree steps); ``1`` = fixed</span>
 <span class="sd">            (no rotation, e.g. grain direction). Lets rectangular and freeform parts share one nest</span>
 <span class="sd">            with different rotation rules.</span>
@@ -1638,20 +1638,20 @@
 <span class="sd">        -------</span>
 <span class="sd">        int</span>
 <span class="sd">            The index of the added part.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
             <span class="p">{</span>
-                <span class="s2">&quot;outline&quot;</span><span class="p">:</span> <span class="n">outline</span><span class="p">,</span>
-                <span class="s2">&quot;holes&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">holes</span> <span class="ow">or</span> <span class="p">[]),</span>
-                <span class="s2">&quot;copies&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">copies</span><span class="p">),</span>
-                <span class="s2">&quot;rotations&quot;</span><span class="p">:</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">rotations</span><span class="p">)),</span>
-                <span class="s2">&quot;attributes&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">attributes</span> <span class="ow">or</span> <span class="p">[]),</span>
+                <span class="s2">"outline"</span><span class="p">:</span> <span class="n">outline</span><span class="p">,</span>
+                <span class="s2">"holes"</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">holes</span> <span class="ow">or</span> <span class="p">[]),</span>
+                <span class="s2">"copies"</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">copies</span><span class="p">),</span>
+                <span class="s2">"rotations"</span><span class="p">:</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">rotations</span><span class="p">)),</span>
+                <span class="s2">"attributes"</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">attributes</span> <span class="ow">or</span> <span class="p">[]),</span>
             <span class="p">}</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parts</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_flatten_parts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expand_copies</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Flatten parts to the flat arrays the engines consume (parts stay in their raw frame).</span>
+<span class="w">        </span><span class="sd">"""Flatten parts to the flat arrays the engines consume (parts stay in their raw frame).</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1664,7 +1664,7 @@
 <span class="sd">        dict</span>
 <span class="sd">            Keys: ``vertex_counts``, ``xy``, ``hole_counts``, ``hole_vertex_counts``, ``hole_xy``,</span>
 <span class="sd">            and either ``origin_index`` (expand) or ``quantities``.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">vertex_counts</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">xy</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">hole_counts</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1677,16 +1677,16 @@
         <span class="n">rotations</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="k">for</span> <span class="n">part_index</span><span class="p">,</span> <span class="n">part</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parts</span><span class="p">):</span>
-            <span class="n">copies</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">part</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;copies&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
+            <span class="n">copies</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">part</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"copies"</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
             <span class="n">reps</span> <span class="o">=</span> <span class="n">copies</span> <span class="k">if</span> <span class="n">expand_copies</span> <span class="k">else</span> <span class="mi">1</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">expand_copies</span><span class="p">:</span>
                 <span class="n">quantities</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">copies</span><span class="p">)</span>
-            <span class="n">rot</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">part</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;rotations&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
+            <span class="n">rot</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">part</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"rotations"</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
             <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">reps</span><span class="p">):</span>
-                <span class="n">n</span><span class="p">,</span> <span class="n">flat</span> <span class="o">=</span> <span class="n">_ring_xy</span><span class="p">(</span><span class="n">part</span><span class="p">[</span><span class="s2">&quot;outline&quot;</span><span class="p">])</span>
+                <span class="n">n</span><span class="p">,</span> <span class="n">flat</span> <span class="o">=</span> <span class="n">_ring_xy</span><span class="p">(</span><span class="n">part</span><span class="p">[</span><span class="s2">"outline"</span><span class="p">])</span>
                 <span class="n">vertex_counts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
                 <span class="n">xy</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">flat</span><span class="p">)</span>
-                <span class="n">holes</span> <span class="o">=</span> <span class="n">part</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;holes&quot;</span><span class="p">,</span> <span class="p">[])</span>
+                <span class="n">holes</span> <span class="o">=</span> <span class="n">part</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"holes"</span><span class="p">,</span> <span class="p">[])</span>
                 <span class="n">hole_counts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">holes</span><span class="p">))</span>
                 <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">holes</span><span class="p">:</span>
                     <span class="n">hn</span><span class="p">,</span> <span class="n">hflat</span> <span class="o">=</span> <span class="n">_ring_xy</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
@@ -1696,17 +1696,17 @@
                 <span class="n">rotations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rot</span><span class="p">)</span>
 
         <span class="n">result</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;vertex_counts&quot;</span><span class="p">:</span> <span class="n">vertex_counts</span><span class="p">,</span>
-            <span class="s2">&quot;xy&quot;</span><span class="p">:</span> <span class="n">xy</span><span class="p">,</span>
-            <span class="s2">&quot;hole_counts&quot;</span><span class="p">:</span> <span class="n">hole_counts</span><span class="p">,</span>
-            <span class="s2">&quot;hole_vertex_counts&quot;</span><span class="p">:</span> <span class="n">hole_vertex_counts</span><span class="p">,</span>
-            <span class="s2">&quot;hole_xy&quot;</span><span class="p">:</span> <span class="n">hole_xy</span><span class="p">,</span>
-            <span class="s2">&quot;rotations&quot;</span><span class="p">:</span> <span class="n">rotations</span><span class="p">,</span>
+            <span class="s2">"vertex_counts"</span><span class="p">:</span> <span class="n">vertex_counts</span><span class="p">,</span>
+            <span class="s2">"xy"</span><span class="p">:</span> <span class="n">xy</span><span class="p">,</span>
+            <span class="s2">"hole_counts"</span><span class="p">:</span> <span class="n">hole_counts</span><span class="p">,</span>
+            <span class="s2">"hole_vertex_counts"</span><span class="p">:</span> <span class="n">hole_vertex_counts</span><span class="p">,</span>
+            <span class="s2">"hole_xy"</span><span class="p">:</span> <span class="n">hole_xy</span><span class="p">,</span>
+            <span class="s2">"rotations"</span><span class="p">:</span> <span class="n">rotations</span><span class="p">,</span>
         <span class="p">}</span>
         <span class="k">if</span> <span class="n">expand_copies</span><span class="p">:</span>
-            <span class="n">result</span><span class="p">[</span><span class="s2">&quot;origin_index&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">origin_index</span>
+            <span class="n">result</span><span class="p">[</span><span class="s2">"origin_index"</span><span class="p">]</span> <span class="o">=</span> <span class="n">origin_index</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">result</span><span class="p">[</span><span class="s2">&quot;quantities&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">quantities</span>
+            <span class="n">result</span><span class="p">[</span><span class="s2">"quantities"</span><span class="p">]</span> <span class="o">=</span> <span class="n">quantities</span>
         <span class="k">return</span> <span class="n">result</span>
 </code></pre></div></td></tr></table></div>
               </details>
@@ -1895,7 +1895,7 @@ with different rotation rules.</p>
 <span class="normal">102</span>
 <span class="normal">103</span>
 <span class="normal">104</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_part</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outline</span><span class="p">,</span> <span class="n">holes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">copies</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">attributes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rotations</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Add a part.</span>
+<span class="w">    </span><span class="sd">"""Add a part.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1908,7 +1908,7 @@ with different rotation rules.</p>
 <span class="sd">    attributes : list[:class:`compas.geometry.Geometry`], optional</span>
 <span class="sd">        Extra geometry carried along with the part through placement (opennest engine feature).</span>
 <span class="sd">    rotations : int, optional</span>
-<span class="sd">        Per-part rotation override. ``0`` (default) = use the solver&#39;s global rotation setting;</span>
+<span class="sd">        Per-part rotation override. ``0`` (default) = use the solver's global rotation setting;</span>
 <span class="sd">        ``N`` = this part may only use ``N`` orientations (360/N degree steps); ``1`` = fixed</span>
 <span class="sd">        (no rotation, e.g. grain direction). Lets rectangular and freeform parts share one nest</span>
 <span class="sd">        with different rotation rules.</span>
@@ -1917,14 +1917,14 @@ with different rotation rules.</p>
 <span class="sd">    -------</span>
 <span class="sd">    int</span>
 <span class="sd">        The index of the added part.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
         <span class="p">{</span>
-            <span class="s2">&quot;outline&quot;</span><span class="p">:</span> <span class="n">outline</span><span class="p">,</span>
-            <span class="s2">&quot;holes&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">holes</span> <span class="ow">or</span> <span class="p">[]),</span>
-            <span class="s2">&quot;copies&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">copies</span><span class="p">),</span>
-            <span class="s2">&quot;rotations&quot;</span><span class="p">:</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">rotations</span><span class="p">)),</span>
-            <span class="s2">&quot;attributes&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">attributes</span> <span class="ow">or</span> <span class="p">[]),</span>
+            <span class="s2">"outline"</span><span class="p">:</span> <span class="n">outline</span><span class="p">,</span>
+            <span class="s2">"holes"</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">holes</span> <span class="ow">or</span> <span class="p">[]),</span>
+            <span class="s2">"copies"</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">copies</span><span class="p">),</span>
+            <span class="s2">"rotations"</span><span class="p">:</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">rotations</span><span class="p">)),</span>
+            <span class="s2">"attributes"</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">attributes</span> <span class="ow">or</span> <span class="p">[]),</span>
         <span class="p">}</span>
     <span class="p">)</span>
     <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parts</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
@@ -2179,21 +2179,21 @@ with different rotation rules.</p>
 <span class="normal">299</span>
 <span class="normal">300</span>
 <span class="normal">301</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">nest_sheets</span><span class="p">(</span><span class="n">Data</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Container for the sheets (polylines with optional holes) to nest into.</span>
+<span class="w">    </span><span class="sd">"""Container for the sheets (polylines with optional holes) to nest into.</span>
 
 <span class="sd">    Replicates the role of the OpenNest C# ``nest_sheets`` class.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    sheets : list[dict], optional</span>
-<span class="sd">        Each sheet is a dict ``{&quot;outline&quot;: Polyline, &quot;holes&quot;: [Polyline, ...]}``.</span>
+<span class="sd">        Each sheet is a dict ``{"outline": Polyline, "holes": [Polyline, ...]}``.</span>
 <span class="sd">    name : str, optional</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    sheets : list[dict]</span>
 <span class="sd">        The sheets. Index into this list is the ``sheet_id`` returned by the engines.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sheets</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
@@ -2202,18 +2202,18 @@ with different rotation rules.</p>
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">__data__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">{</span>
-            <span class="s2">&quot;sheets&quot;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span><span class="s2">&quot;outline&quot;</span><span class="p">:</span> <span class="n">sheet</span><span class="p">[</span><span class="s2">&quot;outline&quot;</span><span class="p">],</span> <span class="s2">&quot;holes&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">sheet</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;holes&quot;</span><span class="p">,</span> <span class="p">[]))}</span>
+            <span class="s2">"sheets"</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span><span class="s2">"outline"</span><span class="p">:</span> <span class="n">sheet</span><span class="p">[</span><span class="s2">"outline"</span><span class="p">],</span> <span class="s2">"holes"</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">sheet</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"holes"</span><span class="p">,</span> <span class="p">[]))}</span>
                 <span class="k">for</span> <span class="n">sheet</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sheets</span>
             <span class="p">]</span>
         <span class="p">}</span>
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">__from_data__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">sheets</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;sheets&quot;</span><span class="p">])</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">sheets</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">"sheets"</span><span class="p">])</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">add_sheet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outline</span><span class="p">,</span> <span class="n">holes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a sheet.</span>
+<span class="w">        </span><span class="sd">"""Add a sheet.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -2226,13 +2226,13 @@ with different rotation rules.</p>
 <span class="sd">        -------</span>
 <span class="sd">        int</span>
 <span class="sd">            The index of the added sheet.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sheets</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;outline&quot;</span><span class="p">:</span> <span class="n">outline</span><span class="p">,</span> <span class="s2">&quot;holes&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">holes</span> <span class="ow">or</span> <span class="p">[])})</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sheets</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"outline"</span><span class="p">:</span> <span class="n">outline</span><span class="p">,</span> <span class="s2">"holes"</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">holes</span> <span class="ow">or</span> <span class="p">[])})</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sheets</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">from_size</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">gap</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Build ``count`` rectangular sheets laid out left to right.</span>
+<span class="w">        </span><span class="sd">"""Build ``count`` rectangular sheets laid out left to right.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -2246,7 +2246,7 @@ with different rotation rules.</p>
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        :class:`nest_sheets`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">gap</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">width</span> <span class="k">if</span> <span class="n">gap</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">gap</span>
         <span class="n">sheets</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
@@ -2264,30 +2264,30 @@ with different rotation rules.</p>
         <span class="k">return</span> <span class="n">sheets</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">origins</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the world origin (bbox min x, y) of each sheet.</span>
+<span class="w">        </span><span class="sd">"""Return the world origin (bbox min x, y) of each sheet.</span>
 
 <span class="sd">        The engines work in a sheet-local frame; placements are returned relative to this origin.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        list[tuple[float, float]]</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">out</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">sheet</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sheets</span><span class="p">:</span>
-            <span class="n">pts</span> <span class="o">=</span> <span class="n">sheet</span><span class="p">[</span><span class="s2">&quot;outline&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">points</span>
+            <span class="n">pts</span> <span class="o">=</span> <span class="n">sheet</span><span class="p">[</span><span class="s2">"outline"</span><span class="p">]</span><span class="o">.</span><span class="n">points</span>
             <span class="n">ox</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pts</span><span class="p">)</span>
             <span class="n">oy</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pts</span><span class="p">)</span>
             <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">ox</span><span class="p">,</span> <span class="n">oy</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">out</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">to_arrays</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Flatten sheets to flat arrays in their local frame (each sheet normalised to its bbox min).</span>
+<span class="w">        </span><span class="sd">"""Flatten sheets to flat arrays in their local frame (each sheet normalised to its bbox min).</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        dict</span>
 <span class="sd">            Keys: ``vertex_counts``, ``xy``, ``hole_counts``, ``hole_vertex_counts``, ``hole_xy``, ``origins``.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">vertex_counts</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">xy</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">hole_counts</span> <span class="o">=</span> <span class="p">[]</span>
@@ -2296,10 +2296,10 @@ with different rotation rules.</p>
         <span class="n">origins</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">origins</span><span class="p">()</span>
 
         <span class="k">for</span> <span class="n">sheet</span><span class="p">,</span> <span class="p">(</span><span class="n">ox</span><span class="p">,</span> <span class="n">oy</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sheets</span><span class="p">,</span> <span class="n">origins</span><span class="p">):</span>
-            <span class="n">n</span><span class="p">,</span> <span class="n">flat</span> <span class="o">=</span> <span class="n">_ring_xy</span><span class="p">(</span><span class="n">sheet</span><span class="p">[</span><span class="s2">&quot;outline&quot;</span><span class="p">],</span> <span class="n">ox</span><span class="p">,</span> <span class="n">oy</span><span class="p">)</span>
+            <span class="n">n</span><span class="p">,</span> <span class="n">flat</span> <span class="o">=</span> <span class="n">_ring_xy</span><span class="p">(</span><span class="n">sheet</span><span class="p">[</span><span class="s2">"outline"</span><span class="p">],</span> <span class="n">ox</span><span class="p">,</span> <span class="n">oy</span><span class="p">)</span>
             <span class="n">vertex_counts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
             <span class="n">xy</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">flat</span><span class="p">)</span>
-            <span class="n">holes</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;holes&quot;</span><span class="p">,</span> <span class="p">[])</span>
+            <span class="n">holes</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"holes"</span><span class="p">,</span> <span class="p">[])</span>
             <span class="n">hole_counts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">holes</span><span class="p">))</span>
             <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">holes</span><span class="p">:</span>
                 <span class="n">hn</span><span class="p">,</span> <span class="n">hflat</span> <span class="o">=</span> <span class="n">_ring_xy</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">ox</span><span class="p">,</span> <span class="n">oy</span><span class="p">)</span>
@@ -2307,12 +2307,12 @@ with different rotation rules.</p>
                 <span class="n">hole_xy</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">hflat</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="p">{</span>
-            <span class="s2">&quot;vertex_counts&quot;</span><span class="p">:</span> <span class="n">vertex_counts</span><span class="p">,</span>
-            <span class="s2">&quot;xy&quot;</span><span class="p">:</span> <span class="n">xy</span><span class="p">,</span>
-            <span class="s2">&quot;hole_counts&quot;</span><span class="p">:</span> <span class="n">hole_counts</span><span class="p">,</span>
-            <span class="s2">&quot;hole_vertex_counts&quot;</span><span class="p">:</span> <span class="n">hole_vertex_counts</span><span class="p">,</span>
-            <span class="s2">&quot;hole_xy&quot;</span><span class="p">:</span> <span class="n">hole_xy</span><span class="p">,</span>
-            <span class="s2">&quot;origins&quot;</span><span class="p">:</span> <span class="n">origins</span><span class="p">,</span>
+            <span class="s2">"vertex_counts"</span><span class="p">:</span> <span class="n">vertex_counts</span><span class="p">,</span>
+            <span class="s2">"xy"</span><span class="p">:</span> <span class="n">xy</span><span class="p">,</span>
+            <span class="s2">"hole_counts"</span><span class="p">:</span> <span class="n">hole_counts</span><span class="p">,</span>
+            <span class="s2">"hole_vertex_counts"</span><span class="p">:</span> <span class="n">hole_vertex_counts</span><span class="p">,</span>
+            <span class="s2">"hole_xy"</span><span class="p">:</span> <span class="n">hole_xy</span><span class="p">,</span>
+            <span class="s2">"origins"</span><span class="p">:</span> <span class="n">origins</span><span class="p">,</span>
         <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
               </details>
@@ -2433,7 +2433,7 @@ with different rotation rules.</p>
 <span class="normal">214</span>
 <span class="normal">215</span>
 <span class="normal">216</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_sheet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outline</span><span class="p">,</span> <span class="n">holes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Add a sheet.</span>
+<span class="w">    </span><span class="sd">"""Add a sheet.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -2446,8 +2446,8 @@ with different rotation rules.</p>
 <span class="sd">    -------</span>
 <span class="sd">    int</span>
 <span class="sd">        The index of the added sheet.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">sheets</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;outline&quot;</span><span class="p">:</span> <span class="n">outline</span><span class="p">,</span> <span class="s2">&quot;holes&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">holes</span> <span class="ow">or</span> <span class="p">[])})</span>
+<span class="sd">    """</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">sheets</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"outline"</span><span class="p">:</span> <span class="n">outline</span><span class="p">,</span> <span class="s2">"holes"</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">holes</span> <span class="ow">or</span> <span class="p">[])})</span>
     <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sheets</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -2610,7 +2610,7 @@ with different rotation rules.</p>
 <span class="normal">248</span>
 <span class="normal">249</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@classmethod</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">from_size</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">gap</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Build ``count`` rectangular sheets laid out left to right.</span>
+<span class="w">    </span><span class="sd">"""Build ``count`` rectangular sheets laid out left to right.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -2624,7 +2624,7 @@ with different rotation rules.</p>
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    :class:`nest_sheets`</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">gap</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">width</span> <span class="k">if</span> <span class="n">gap</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">gap</span>
     <span class="n">sheets</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
@@ -2702,17 +2702,17 @@ with different rotation rules.</p>
 <span class="normal">264</span>
 <span class="normal">265</span>
 <span class="normal">266</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">origins</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the world origin (bbox min x, y) of each sheet.</span>
+<span class="w">    </span><span class="sd">"""Return the world origin (bbox min x, y) of each sheet.</span>
 
 <span class="sd">    The engines work in a sheet-local frame; placements are returned relative to this origin.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    list[tuple[float, float]]</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">out</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">sheet</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sheets</span><span class="p">:</span>
-        <span class="n">pts</span> <span class="o">=</span> <span class="n">sheet</span><span class="p">[</span><span class="s2">&quot;outline&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">points</span>
+        <span class="n">pts</span> <span class="o">=</span> <span class="n">sheet</span><span class="p">[</span><span class="s2">"outline"</span><span class="p">]</span><span class="o">.</span><span class="n">points</span>
         <span class="n">ox</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pts</span><span class="p">)</span>
         <span class="n">oy</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pts</span><span class="p">)</span>
         <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">ox</span><span class="p">,</span> <span class="n">oy</span><span class="p">))</span>
@@ -2796,13 +2796,13 @@ with different rotation rules.</p>
 <span class="normal">299</span>
 <span class="normal">300</span>
 <span class="normal">301</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">to_arrays</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Flatten sheets to flat arrays in their local frame (each sheet normalised to its bbox min).</span>
+<span class="w">    </span><span class="sd">"""Flatten sheets to flat arrays in their local frame (each sheet normalised to its bbox min).</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    dict</span>
 <span class="sd">        Keys: ``vertex_counts``, ``xy``, ``hole_counts``, ``hole_vertex_counts``, ``hole_xy``, ``origins``.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">vertex_counts</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">xy</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">hole_counts</span> <span class="o">=</span> <span class="p">[]</span>
@@ -2811,10 +2811,10 @@ with different rotation rules.</p>
     <span class="n">origins</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">origins</span><span class="p">()</span>
 
     <span class="k">for</span> <span class="n">sheet</span><span class="p">,</span> <span class="p">(</span><span class="n">ox</span><span class="p">,</span> <span class="n">oy</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sheets</span><span class="p">,</span> <span class="n">origins</span><span class="p">):</span>
-        <span class="n">n</span><span class="p">,</span> <span class="n">flat</span> <span class="o">=</span> <span class="n">_ring_xy</span><span class="p">(</span><span class="n">sheet</span><span class="p">[</span><span class="s2">&quot;outline&quot;</span><span class="p">],</span> <span class="n">ox</span><span class="p">,</span> <span class="n">oy</span><span class="p">)</span>
+        <span class="n">n</span><span class="p">,</span> <span class="n">flat</span> <span class="o">=</span> <span class="n">_ring_xy</span><span class="p">(</span><span class="n">sheet</span><span class="p">[</span><span class="s2">"outline"</span><span class="p">],</span> <span class="n">ox</span><span class="p">,</span> <span class="n">oy</span><span class="p">)</span>
         <span class="n">vertex_counts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
         <span class="n">xy</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">flat</span><span class="p">)</span>
-        <span class="n">holes</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;holes&quot;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="n">holes</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"holes"</span><span class="p">,</span> <span class="p">[])</span>
         <span class="n">hole_counts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">holes</span><span class="p">))</span>
         <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">holes</span><span class="p">:</span>
             <span class="n">hn</span><span class="p">,</span> <span class="n">hflat</span> <span class="o">=</span> <span class="n">_ring_xy</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">ox</span><span class="p">,</span> <span class="n">oy</span><span class="p">)</span>
@@ -2822,12 +2822,12 @@ with different rotation rules.</p>
             <span class="n">hole_xy</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">hflat</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="p">{</span>
-        <span class="s2">&quot;vertex_counts&quot;</span><span class="p">:</span> <span class="n">vertex_counts</span><span class="p">,</span>
-        <span class="s2">&quot;xy&quot;</span><span class="p">:</span> <span class="n">xy</span><span class="p">,</span>
-        <span class="s2">&quot;hole_counts&quot;</span><span class="p">:</span> <span class="n">hole_counts</span><span class="p">,</span>
-        <span class="s2">&quot;hole_vertex_counts&quot;</span><span class="p">:</span> <span class="n">hole_vertex_counts</span><span class="p">,</span>
-        <span class="s2">&quot;hole_xy&quot;</span><span class="p">:</span> <span class="n">hole_xy</span><span class="p">,</span>
-        <span class="s2">&quot;origins&quot;</span><span class="p">:</span> <span class="n">origins</span><span class="p">,</span>
+        <span class="s2">"vertex_counts"</span><span class="p">:</span> <span class="n">vertex_counts</span><span class="p">,</span>
+        <span class="s2">"xy"</span><span class="p">:</span> <span class="n">xy</span><span class="p">,</span>
+        <span class="s2">"hole_counts"</span><span class="p">:</span> <span class="n">hole_counts</span><span class="p">,</span>
+        <span class="s2">"hole_vertex_counts"</span><span class="p">:</span> <span class="n">hole_vertex_counts</span><span class="p">,</span>
+        <span class="s2">"hole_xy"</span><span class="p">:</span> <span class="n">hole_xy</span><span class="p">,</span>
+        <span class="s2">"origins"</span><span class="p">:</span> <span class="n">origins</span><span class="p">,</span>
     <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -2909,7 +2909,7 @@ with different rotation rules.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "navigation.sections", "navigation.indexes", "navigation.top", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

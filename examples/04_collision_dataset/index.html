@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../assets/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -31,7 +31,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -1066,12 +1066,12 @@ poses so the real clearance gaps are visible.</p>
 <span class="kn">from</span><span class="w"> </span><span class="nn">compas_nest</span><span class="w"> </span><span class="kn">import</span> <span class="n">opennest_collision</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">compas_nest.viewer</span><span class="w"> </span><span class="kn">import</span> <span class="n">animate</span>
 
-<span class="n">DATA</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">&quot;data&quot;</span>
+<span class="n">DATA</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">"data"</span>
 <span class="n">CLEARANCE</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># small gap (units) around every element and from the sheet edges/holes</span>
 
 <span class="c1"># 1. the 48 element outlines (data/elements_strips.json) on a single 510 x 635 sheet</span>
 <span class="n">geo</span><span class="p">:</span> <span class="n">nest_geo</span> <span class="o">=</span> <span class="n">nest_geo</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">outline</span> <span class="ow">in</span> <span class="n">json_load</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">DATA</span> <span class="o">/</span> <span class="s2">&quot;elements_strips.json&quot;</span><span class="p">)):</span>
+<span class="k">for</span> <span class="n">outline</span> <span class="ow">in</span> <span class="n">json_load</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">DATA</span> <span class="o">/</span> <span class="s2">"elements_strips.json"</span><span class="p">)):</span>
     <span class="n">geo</span><span class="o">.</span><span class="n">add_part</span><span class="p">(</span><span class="n">outline</span><span class="p">)</span>
 
 <span class="n">sheets</span><span class="p">:</span> <span class="n">nest_sheets</span> <span class="o">=</span> <span class="n">nest_sheets</span><span class="o">.</span><span class="n">from_size</span><span class="p">(</span><span class="mi">510</span><span class="p">,</span> <span class="mi">635</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -1087,15 +1087,15 @@ poses so the real clearance gaps are visible.</p>
     <span class="n">num_rotations</span><span class="o">=</span><span class="mi">3600</span><span class="p">,</span>   <span class="c1"># fine orientation sampling (the elongated strips need it)</span>
     <span class="n">seed</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>             <span class="c1"># base RNG seed</span>
     <span class="n">n_starts</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>           <span class="c1"># multi-start: try several seeds, keep the densest (this is what fits all 48)</span>
-    <span class="n">part_holes_mode</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>    <span class="c1"># &quot;elements holes fill&quot;: nest smaller parts into larger parts&#39; holes</span>
+    <span class="n">part_holes_mode</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>    <span class="c1"># "elements holes fill": nest smaller parts into larger parts' holes</span>
     <span class="n">pole_max</span><span class="o">=</span><span class="mi">48</span><span class="p">,</span>          <span class="c1"># collision-gradient fidelity (tighter packing)</span>
     <span class="n">final_compact</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>      <span class="c1"># multi-directional post-pack compaction (reclaims interior voids)</span>
-    <span class="n">fit_mode</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>           <span class="c1"># &quot;fit one sheet&quot;: pack everything onto a single sheet</span>
+    <span class="n">fit_mode</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>           <span class="c1"># "fit one sheet": pack everything onto a single sheet</span>
     <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
 <span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">offset_g</span><span class="p">,</span> <span class="n">offset_s</span><span class="p">)</span>
 
 <span class="c1"># 3. animate the ORIGINAL parts at the solved poses (so the real parts show the clearance gaps)</span>
-<span class="n">animate</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">geo</span><span class="p">,</span> <span class="n">offset_s</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="n">DATA</span> <span class="o">/</span> <span class="s2">&quot;output&quot;</span> <span class="o">/</span> <span class="s2">&quot;04_collision_dataset.json&quot;</span><span class="p">,</span> <span class="n">park</span><span class="o">=-</span><span class="mf">635.0</span><span class="p">)</span>
+<span class="n">animate</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">geo</span><span class="p">,</span> <span class="n">offset_s</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="n">DATA</span> <span class="o">/</span> <span class="s2">"output"</span> <span class="o">/</span> <span class="s2">"04_collision_dataset.json"</span><span class="p">,</span> <span class="n">park</span><span class="o">=-</span><span class="mf">635.0</span><span class="p">)</span>
 </code></pre></div>
 
 
@@ -1155,7 +1155,7 @@ poses so the real clearance gaps are visible.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "navigation.sections", "navigation.indexes", "navigation.top", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

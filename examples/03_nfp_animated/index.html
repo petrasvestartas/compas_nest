@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../assets/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -31,7 +31,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -1065,12 +1065,12 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">compas_nest</span><span class="w"> </span><span class="kn">import</span> <span class="n">opennest</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">compas_nest.viewer</span><span class="w"> </span><span class="kn">import</span> <span class="n">animate</span>
 
-<span class="n">DATA</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">&quot;data&quot;</span>
+<span class="n">DATA</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">"data"</span>
 <span class="n">CLEARANCE</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># small gap (units) around every element and from the sheet edges/holes</span>
 
 <span class="c1"># 1. the 48 element outlines (data/elements_strips.json) and two 510 x 635 sheets</span>
 <span class="n">geo</span><span class="p">:</span> <span class="n">nest_geo</span> <span class="o">=</span> <span class="n">nest_geo</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">outline</span> <span class="ow">in</span> <span class="n">json_load</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">DATA</span> <span class="o">/</span> <span class="s2">&quot;elements_strips.json&quot;</span><span class="p">)):</span>
+<span class="k">for</span> <span class="n">outline</span> <span class="ow">in</span> <span class="n">json_load</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">DATA</span> <span class="o">/</span> <span class="s2">"elements_strips.json"</span><span class="p">)):</span>
     <span class="n">geo</span><span class="o">.</span><span class="n">add_part</span><span class="p">(</span><span class="n">outline</span><span class="p">)</span>
 
 <span class="n">sheets</span><span class="p">:</span> <span class="n">nest_sheets</span> <span class="o">=</span> <span class="n">nest_sheets</span><span class="o">.</span><span class="n">from_size</span><span class="p">(</span><span class="mi">510</span><span class="p">,</span> <span class="mi">635</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
@@ -1081,7 +1081,7 @@
 <span class="n">handle</span><span class="p">:</span> <span class="n">nfp_solve</span> <span class="o">=</span> <span class="n">opennest</span><span class="p">(</span><span class="n">generations</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">rotations</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">offset_g</span><span class="p">,</span> <span class="n">offset_s</span><span class="p">)</span>
 
 <span class="c1"># 3. animate the ORIGINAL parts at the solved poses (so the real parts show the clearance gaps)</span>
-<span class="n">animate</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">geo</span><span class="p">,</span> <span class="n">offset_s</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="n">DATA</span> <span class="o">/</span> <span class="s2">&quot;output&quot;</span> <span class="o">/</span> <span class="s2">&quot;03_nfp_animated.json&quot;</span><span class="p">,</span> <span class="n">park</span><span class="o">=-</span><span class="mf">635.0</span><span class="p">)</span>
+<span class="n">animate</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">geo</span><span class="p">,</span> <span class="n">offset_s</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="n">DATA</span> <span class="o">/</span> <span class="s2">"output"</span> <span class="o">/</span> <span class="s2">"03_nfp_animated.json"</span><span class="p">,</span> <span class="n">park</span><span class="o">=-</span><span class="mf">635.0</span><span class="p">)</span>
 </code></pre></div>
 
 
@@ -1141,7 +1141,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "navigation.sections", "navigation.indexes", "navigation.top", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

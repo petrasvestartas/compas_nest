@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../assets/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -31,7 +31,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -1398,9 +1398,9 @@ own width and the row height is the tallest part in that row. Two wrapping modes
 <span class="normal">80</span>
 <span class="normal">81</span>
 <span class="normal">82</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">pack</span><span class="p">(</span><span class="n">geo</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">gap_x</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">gap_y</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">max_width</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Lay parts out in a simple row-major grid (no nesting).</span>
+<span class="w">    </span><span class="sd">"""Lay parts out in a simple row-major grid (no nesting).</span>
 
-<span class="sd">    Each part instance (``copies`` expanded) is placed left to right; the x-advance uses each part&#39;s</span>
+<span class="sd">    Each part instance (``copies`` expanded) is placed left to right; the x-advance uses each part's</span>
 <span class="sd">    own width and the row height is the tallest part in that row. Two wrapping modes:</span>
 
 <span class="sd">    * **array** (default) — start a new row every ``columns`` items.</span>
@@ -1423,7 +1423,7 @@ own width and the row height is the tallest part in that row. Two wrapping modes
 <span class="sd">    :class:`compas_nest.nest_result`</span>
 <span class="sd">        All instances placed on a single sheet with rotation 0; use ``placed_polylines()`` /</span>
 <span class="sd">        ``to_json()`` / ``to_obj()`` as usual.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">columns</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">columns</span><span class="p">))</span>
     <span class="n">placements</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">x</span> <span class="o">=</span> <span class="mf">0.0</span>
@@ -1431,8 +1431,8 @@ own width and the row height is the tallest part in that row. Two wrapping modes
     <span class="n">row_h</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="n">col</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">part_index</span><span class="p">,</span> <span class="n">part</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">geo</span><span class="o">.</span><span class="n">parts</span><span class="p">):</span>
-        <span class="n">copies</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">part</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;copies&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
-        <span class="n">minx</span><span class="p">,</span> <span class="n">miny</span><span class="p">,</span> <span class="n">maxx</span><span class="p">,</span> <span class="n">maxy</span> <span class="o">=</span> <span class="n">_bbox</span><span class="p">(</span><span class="n">part</span><span class="p">[</span><span class="s2">&quot;outline&quot;</span><span class="p">])</span>
+        <span class="n">copies</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">part</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"copies"</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
+        <span class="n">minx</span><span class="p">,</span> <span class="n">miny</span><span class="p">,</span> <span class="n">maxx</span><span class="p">,</span> <span class="n">maxy</span> <span class="o">=</span> <span class="n">_bbox</span><span class="p">(</span><span class="n">part</span><span class="p">[</span><span class="s2">"outline"</span><span class="p">])</span>
         <span class="n">w</span> <span class="o">=</span> <span class="n">maxx</span> <span class="o">-</span> <span class="n">minx</span>
         <span class="n">h</span> <span class="o">=</span> <span class="n">maxy</span> <span class="o">-</span> <span class="n">miny</span>
         <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">copies</span><span class="p">):</span>
@@ -1444,11 +1444,11 @@ own width and the row height is the tallest part in that row. Two wrapping modes
                 <span class="n">row_h</span> <span class="o">=</span> <span class="mf">0.0</span>
             <span class="n">placements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                 <span class="p">{</span>
-                    <span class="s2">&quot;part_index&quot;</span><span class="p">:</span> <span class="n">part_index</span><span class="p">,</span>
-                    <span class="s2">&quot;sheet_id&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-                    <span class="s2">&quot;angle&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
-                    <span class="s2">&quot;tx&quot;</span><span class="p">:</span> <span class="n">x</span> <span class="o">-</span> <span class="n">minx</span><span class="p">,</span>  <span class="c1"># land the part&#39;s min corner at (x, y)</span>
-                    <span class="s2">&quot;ty&quot;</span><span class="p">:</span> <span class="n">y</span> <span class="o">-</span> <span class="n">miny</span><span class="p">,</span>
+                    <span class="s2">"part_index"</span><span class="p">:</span> <span class="n">part_index</span><span class="p">,</span>
+                    <span class="s2">"sheet_id"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                    <span class="s2">"angle"</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+                    <span class="s2">"tx"</span><span class="p">:</span> <span class="n">x</span> <span class="o">-</span> <span class="n">minx</span><span class="p">,</span>  <span class="c1"># land the part's min corner at (x, y)</span>
+                    <span class="s2">"ty"</span><span class="p">:</span> <span class="n">y</span> <span class="o">-</span> <span class="n">miny</span><span class="p">,</span>
                 <span class="p">}</span>
             <span class="p">)</span>
             <span class="n">x</span> <span class="o">+=</span> <span class="n">w</span> <span class="o">+</span> <span class="n">gap_x</span>
@@ -1533,7 +1533,7 @@ own width and the row height is the tallest part in that row. Two wrapping modes
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "navigation.sections", "navigation.indexes", "navigation.top", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

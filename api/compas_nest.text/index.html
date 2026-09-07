@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../assets/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -31,7 +31,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -1195,7 +1195,7 @@ renders a string to a list of :class:<code>compas.geometry.Polyline</code> (arcs
 
 
 <h3 id="compas_nest.text.text_to_polylines" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">text_to_polylines</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="s1">&#39;regular&#39;</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">spacing</span><span class="o">=</span><span class="n">H_SPACING</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">text_to_polylines</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="s1">'regular'</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">spacing</span><span class="o">=</span><span class="n">H_SPACING</span><span class="p">)</span></code>
 
 <a href="#compas_nest.text.text_to_polylines" class="headerlink" title="Permanent link">&para;</a></h3>
 
@@ -1378,10 +1378,10 @@ direction and y-axis "up". Defaults to the world XY frame.</p>
 <span class="normal">138</span>
 <span class="normal">139</span>
 <span class="normal">140</span>
-<span class="normal">141</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">text_to_polylines</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="s2">&quot;regular&quot;</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">spacing</span><span class="o">=</span><span class="n">H_SPACING</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Render ``text`` to a list of single-stroke :class:`compas.geometry.Polyline`.</span>
+<span class="normal">141</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">text_to_polylines</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="s2">"regular"</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">spacing</span><span class="o">=</span><span class="n">H_SPACING</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Render ``text`` to a list of single-stroke :class:`compas.geometry.Polyline`.</span>
 
-<span class="sd">    The text is laid out on the XY plane with the first line&#39;s baseline-left at the origin, then</span>
+<span class="sd">    The text is laid out on the XY plane with the first line's baseline-left at the origin, then</span>
 <span class="sd">    oriented/placed onto ``frame`` — so you can drop a label anywhere (e.g. on a nested sheet) with</span>
 <span class="sd">    any orientation. ``frame`` axes also scale: use a frame with unit axes to keep ``height`` as the</span>
 <span class="sd">    cap height.</span>
@@ -1393,10 +1393,10 @@ direction and y-axis "up". Defaults to the world XY frame.</p>
 <span class="sd">    height : float, optional</span>
 <span class="sd">        Cap height (em) the glyphs are scaled to.</span>
 <span class="sd">    font : str, optional</span>
-<span class="sd">        Packaged font name: ``&quot;regular&quot;`` or ``&quot;bold&quot;``.</span>
+<span class="sd">        Packaged font name: ``"regular"`` or ``"bold"``.</span>
 <span class="sd">    frame : :class:`compas.geometry.Frame`, optional</span>
 <span class="sd">        Where to place/orient the text. Its origin is the text origin, its x-axis the reading</span>
-<span class="sd">        direction and y-axis &quot;up&quot;. Defaults to the world XY frame.</span>
+<span class="sd">        direction and y-axis "up". Defaults to the world XY frame.</span>
 <span class="sd">    spacing : float, optional</span>
 <span class="sd">        Extra gap between glyphs, in em.</span>
 
@@ -1404,11 +1404,11 @@ direction and y-axis "up". Defaults to the world XY frame.</p>
 <span class="sd">    -------</span>
 <span class="sd">    list[:class:`compas.geometry.Polyline`]</span>
 <span class="sd">        One polyline per stroke.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">glyphs</span> <span class="o">=</span> <span class="n">_font</span><span class="p">(</span><span class="n">font</span><span class="p">)</span>
-    <span class="n">fallback</span> <span class="o">=</span> <span class="n">glyphs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\0</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">fallback</span> <span class="o">=</span> <span class="n">glyphs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"</span><span class="se">\0</span><span class="s2">"</span><span class="p">)</span>
     <span class="n">out</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">line_i</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">line_i</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)):</span>
         <span class="n">x</span> <span class="o">=</span> <span class="mf">0.0</span>
         <span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="n">line_i</span> <span class="o">*</span> <span class="n">V_SPACING</span> <span class="o">*</span> <span class="n">height</span>
         <span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
@@ -1416,10 +1416,10 @@ direction and y-axis "up". Defaults to the world XY frame.</p>
             <span class="k">if</span> <span class="n">glyph</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">x</span> <span class="o">+=</span> <span class="p">(</span><span class="mf">0.5</span> <span class="o">+</span> <span class="n">spacing</span><span class="p">)</span> <span class="o">*</span> <span class="n">height</span>
                 <span class="k">continue</span>
-            <span class="n">x</span> <span class="o">-=</span> <span class="n">glyph</span><span class="p">[</span><span class="s2">&quot;start&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">height</span>  <span class="c1"># account for the glyph&#39;s left bearing</span>
-            <span class="k">for</span> <span class="n">stroke</span> <span class="ow">in</span> <span class="n">glyph</span><span class="p">[</span><span class="s2">&quot;strokes&quot;</span><span class="p">]:</span>
+            <span class="n">x</span> <span class="o">-=</span> <span class="n">glyph</span><span class="p">[</span><span class="s2">"start"</span><span class="p">]</span> <span class="o">*</span> <span class="n">height</span>  <span class="c1"># account for the glyph's left bearing</span>
+            <span class="k">for</span> <span class="n">stroke</span> <span class="ow">in</span> <span class="n">glyph</span><span class="p">[</span><span class="s2">"strokes"</span><span class="p">]:</span>
                 <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Polyline</span><span class="p">([[</span><span class="n">x</span> <span class="o">+</span> <span class="n">px</span> <span class="o">*</span> <span class="n">height</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">py</span> <span class="o">*</span> <span class="n">height</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span> <span class="k">for</span> <span class="p">(</span><span class="n">px</span><span class="p">,</span> <span class="n">py</span><span class="p">)</span> <span class="ow">in</span> <span class="n">stroke</span><span class="p">]))</span>
-            <span class="n">x</span> <span class="o">+=</span> <span class="n">glyph</span><span class="p">[</span><span class="s2">&quot;end&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">height</span> <span class="o">+</span> <span class="n">spacing</span> <span class="o">*</span> <span class="n">height</span>
+            <span class="n">x</span> <span class="o">+=</span> <span class="n">glyph</span><span class="p">[</span><span class="s2">"end"</span><span class="p">]</span> <span class="o">*</span> <span class="n">height</span> <span class="o">+</span> <span class="n">spacing</span> <span class="o">*</span> <span class="n">height</span>
 
     <span class="k">if</span> <span class="n">frame</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="kn">from</span><span class="w"> </span><span class="nn">compas.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">Transformation</span>
@@ -1498,7 +1498,7 @@ direction and y-axis "up". Defaults to the world XY frame.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "navigation.sections", "navigation.indexes", "navigation.top", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>
